@@ -8,7 +8,7 @@
 						<div class="single-widget about">
 							<h2>Rumah Quran Al-mubarok</h2>
 							<ul class="list">
-								<li><i class="fa fa-phone"></i>Phone: +123 456-7890 </li>
+								<li><i class="fa fa-phone"></i>Phone: 0812345 </li>
 								<li><i class="fa fa-envelope"></i>Email: <a href="mailto:info@youremail.com">Info@youremail.com</a></li>
 								<li><i class="fa fa-map-o"></i>Address: 123, Jolfikar state, Us</li>
 							</ul>
