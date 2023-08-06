@@ -6,7 +6,7 @@
 					<div class="col-lg-4 col-md-6 col-12">
 						<!-- About -->
 						<div class="single-widget about">
-							<h2>About Eduland</h2>
+							<h2>Rumah Quran Al-mubarok</h2>
 							<ul class="list">
 								<li><i class="fa fa-phone"></i>Phone: +123 456-7890 </li>
 								<li><i class="fa fa-envelope"></i>Email: <a href="mailto:info@youremail.com">Info@youremail.com</a></li>
