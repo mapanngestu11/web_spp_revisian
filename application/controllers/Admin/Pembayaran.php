@@ -23,6 +23,8 @@ class Pembayaran  extends CI_Controller
 
     public function index()
     {
+        var_dump("1");
+        die();
         $data['data_kelas'] = $this->M_kelas->tampil_data();
         $data['siswa'] = $this->M_siswa->tampil_data();
         $this->load->view('Admin/List.Pembayaran.php',$data);
