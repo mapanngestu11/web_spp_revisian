@@ -53,4 +53,11 @@ class M_siswa extends CI_Model
         $hasil = $this->db->query("SELECT * FROM tbl_santri WHERE nis='$u' AND password =md5('$p')");
         return $hasil;
     }
+    function cek_nis($nis)
+    {
+        $this->db->select('*');
+        $this->db->where('nis',$nis);
+        $hsl = $this->db->get('tbl_santri')->result();
+        return $hsl;
+    }
 }

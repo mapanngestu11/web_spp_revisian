@@ -37,8 +37,10 @@
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary">Data Pembayaran</h6>
 
+                  <button class="btn btn-primary block" style=" float: right;" data-toggle="modal" data-target="#tambah_data" data-backdrop="static" data-keyboard="false">Tambah Data Pembayaran</button>
+
                   <!-- modal tambah -->
-                  <div class="modal fade " id="default" role="dialog" aria-hidden="true" data-backdrop="static">>
+                  <div class="modal fade " id="tambah_data" role="dialog" aria-hidden="true" data-backdrop="static">>
                     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
                       <div class="modal-content ">
                         <div class="modal-header">
@@ -51,21 +53,39 @@
                           .form-input {
                             padding-top: 5px;
                           }
+                          .btn-cek{
+                            margin-top: 40px;
+                          }
+                          .tambah_pembayaran{
+                            display: none;
+                          }
                         </style>
 
                         <div class="modal-body">
                           <div class="modal-body">
-                            <form action="<?php echo base_url() . 'Admin/Siswa/add'; ?>" method="post" enctype="multipart/form-data">
+
+                            <div class="row">
+                              <div class="col-md-6">
+                                <label>Cek NIS</label>
+                                <div class="form-group form-input">
+                                  <input type="number" name="nis" placeholder="Nomor Nis. " class="form-control" required>
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <button onclick="check_nis()" id="cek_nis" class="btn btn-primary btn-cek">Cek</button>
+                              </div>
+                            </div>
+                            <form action="<?php echo base_url() . 'Admin/Warga/add'; ?>" method="post" enctype="multipart/form-data" id="tambah_pembayaran" class="tambah_pembayaran">
                               <div class="row">
                                 <div class="col-md-6">
-                                  <label>Cek NIS</label>
-                                  <div class="form-group form-input">
-                                    <input type="number" name="nis" placeholder="Nomor Nis. " class="form-control" required>
-                                  </div>
+                                  <label>Nis</label>
+                                  <input type="text" name="nis" class="form-control" id="nis_baru" readonly="">
                                 </div>
-
+                                <div class="col-md-6">
+                                  <label>Nama</label>
+                                  <input type="text" name="nis" class="form-control" id="nama_santri" readonly="">
+                                </div>
                               </div>
-
 
 
                             </div>
@@ -448,92 +468,123 @@
       $('#dataTable').DataTable(); // ID From dataTable 
       $('#dataTableHover').DataTable(); // ID From dataTable with Hover
     });
-  </script>
 
-  <!-- msg -->
-  <?php if ($this->session->flashData('msg') == 'warning') : ?>
-    <script type="text/javascript">
-      Swal.fire({
-        type: 'warning',
-        title: 'Perhatian !',
-        heading: 'Success',
-        text: "Data Sudah ada .",
-        showHideTransition: 'slide',
-        icon: 'warning',
-        hideAfter: false,
-        bgColor: '#7EC857'
-      });
+      function check_nis() {
+
+        var input_check_nis = $('[name="nis"]').val();
+
+        // alert(input_check_nis);
+
+        $.ajax({
+          url: "<?= site_url('admin/pembayaran/cek_nis/') ?>",
+          type: "POST",
+          dataType: "JSON",
+          data: {
+            input_check_nis: input_check_nis
+          },
+
+          success: function(data) {
+            console.log(data.result);
+            if (data.result != '') {
+              alert("Data Santri Ditemukan");
+              document.getElementById("tambah_pembayaran").style.display = "block";      
+              $('#nis_baru').val(data.result[0].nis);
+              $('#nama_santri').val(data.result[0].nama_santri);
+            }else{
+              alert("Data Santri Tidak Ditemukan !");
+            }
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+
+          }
+        })
+      }
     </script>
 
-    <?php elseif ($this->session->flashData('msg') == 'success') : ?>
+    <!-- msg -->
+    <?php if ($this->session->flashData('msg') == 'warning') : ?>
       <script type="text/javascript">
         Swal.fire({
-          type: 'success',
-          title: 'Sukses',
+          type: 'warning',
+          title: 'Perhatian !',
           heading: 'Success',
-          text: "Data Berhasil Di Tambahkan.",
+          text: "Data Sudah ada .",
           showHideTransition: 'slide',
-          icon: 'success',
+          icon: 'warning',
           hideAfter: false,
           bgColor: '#7EC857'
         });
       </script>
-      <?php elseif ($this->session->flashData('msg') == 'success-excel') : ?>
+
+      <?php elseif ($this->session->flashData('msg') == 'success') : ?>
         <script type="text/javascript">
           Swal.fire({
             type: 'success',
             title: 'Sukses',
             heading: 'Success',
-            text: "File berhasil Upload, Segera Tambahkan Foto profil Pada Siswa.",
+            text: "Data Berhasil Di Tambahkan.",
             showHideTransition: 'slide',
             icon: 'success',
             hideAfter: false,
             bgColor: '#7EC857'
           });
         </script>
-        <?php elseif ($this->session->flashData('msg') == 'success-update') : ?>
+        <?php elseif ($this->session->flashData('msg') == 'success-excel') : ?>
           <script type="text/javascript">
             Swal.fire({
               type: 'success',
               title: 'Sukses',
               heading: 'Success',
-              text: "Data Berhasil di Update !",
+              text: "File berhasil Upload, Segera Tambahkan Foto profil Pada Siswa.",
               showHideTransition: 'slide',
               icon: 'success',
               hideAfter: false,
               bgColor: '#7EC857'
             });
           </script>
-          <?php elseif ($this->session->flashData('msg') == 'info-update') : ?>
+          <?php elseif ($this->session->flashData('msg') == 'success-update') : ?>
             <script type="text/javascript">
               Swal.fire({
                 type: 'success',
                 title: 'Sukses',
                 heading: 'Success',
-                text: "Data Berhasil Di Update.",
+                text: "Data Berhasil di Update !",
                 showHideTransition: 'slide',
                 icon: 'success',
                 hideAfter: false,
                 bgColor: '#7EC857'
               });
             </script>
-            <?php elseif ($this->session->flashData('msg') == 'success-hapus') : ?>
+            <?php elseif ($this->session->flashData('msg') == 'info-update') : ?>
               <script type="text/javascript">
                 Swal.fire({
                   type: 'success',
                   title: 'Sukses',
                   heading: 'Success',
-                  text: "Data Berhasil dihapus.",
+                  text: "Data Berhasil Di Update.",
                   showHideTransition: 'slide',
                   icon: 'success',
                   hideAfter: false,
                   bgColor: '#7EC857'
                 });
               </script>
-              <?php else : ?>
+              <?php elseif ($this->session->flashData('msg') == 'success-hapus') : ?>
+                <script type="text/javascript">
+                  Swal.fire({
+                    type: 'success',
+                    title: 'Sukses',
+                    heading: 'Success',
+                    text: "Data Berhasil dihapus.",
+                    showHideTransition: 'slide',
+                    icon: 'success',
+                    hideAfter: false,
+                    bgColor: '#7EC857'
+                  });
+                </script>
+                <?php else : ?>
 
-              <?php endif; ?>
+                <?php endif; ?>
 
-            </body>
+              </body>
 
-            </html>
+              </html>

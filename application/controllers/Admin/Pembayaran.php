@@ -23,7 +23,6 @@ class Pembayaran  extends CI_Controller
 
     public function index()
     {
-     
         $data['data_kelas'] = $this->M_kelas->tampil_data();
         $data['siswa'] = $this->M_siswa->tampil_data();
         $this->load->view('Admin/List.Pembayaran.php',$data);
@@ -220,6 +219,34 @@ public function update()
             redirect('Admin/Siswa');
 
         }
+
+    }
+    public function cek_nis()
+    {
+        $data = (object)array();
+        $nis = $this->input->post('input_check_nis');
+        // $nis = '2022001';
+        $cek_nis = $this->M_siswa->cek_nis($nis);
+
+        $data_nis = json_encode($cek_nis);
+
+        $decode_nis = json_decode($data_nis);
+
+        if ($decode_nis != NULL) {
+
+            $hasil = "Data Ada";
+            $data->result  = $decode_nis;
+            $data->success         = TRUE;
+            $data->message        = "True !";
+
+        }else{
+
+            $hasil = "Data Kosong";
+            $data->result = FALSE ;
+            $data->status = FALSE;
+        }
+
+        echo json_encode($data);
 
     }
 }
