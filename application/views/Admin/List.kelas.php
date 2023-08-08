@@ -53,15 +53,15 @@
 
                               <div class="row">
                                 <div class="col-md-6">
-                                  <label>Tahun Ajaran</label>
+                                  <label>Tahun Angkatan</label>
                                   <div class="form-group form-input">
                                    <select name="tahun_angkatan" class="form-control" required="">
                                     <option value="">--Pilih--</option>
-                                    <option value="2020/2021">2020/2021 </option>
-                                    <option value="2021/2022">2021/2022 </option>
-                                    <option value="2022/2023">2022/2023 </option>
-                                    <option value="2023/2024">2023/2024 </option>
-                                    <option value="2024/2025">2024/2025 </option>
+                                    <option value="2020">2020 </option>
+                                    <option value="2021">2021 </option>
+                                    <option value="2022">2022 </option>
+                                    <option value="2023">2023 </option>
+                                    <option value="2024">2024 </option>
                                   </select>
                                 </div>
                               </div>
@@ -208,15 +208,15 @@
                   <form action="<?php echo base_url() . 'Admin/Kelas/update'; ?>" method="post">
                    <div class="row">
                     <div class="col-md-6">
-                      <label>Tahun Ajaran</label>
+                      <label>Tahun Angkatan</label>
                       <div class="form-group form-input">
                        <select name="jenjang" class="form-control" required="">
                         <option value="<?php echo $tahun_angkatan;?>"><?php echo $tahun_angkatan;?></option>
-                        <option value="2020/2021">2020/2021 </option>
-                        <option value="2021/2022">2021/2022 </option>
-                        <option value="2022/2023">2022/2023 </option>
-                        <option value="2023/2024">2023/2024 </option>
-                        <option value="2024/2025">2024/2025 </option>
+                        <option value="2020">2020 </option>
+                        <option value="2021">2021 </option>
+                        <option value="2022">2022 </option>
+                        <option value="2023">2023 </option>
+                        <option value="2024">2024 </option>
                       </select>
                     </div>
                   </div>
@@ -274,7 +274,7 @@
         type: 'warning',
         title: 'Perhatian !',
         heading: 'Success',
-        text: "Data Sudah ada .",
+        text: "Proses Gagal !",
         showHideTransition: 'slide',
         icon: 'warning',
         hideAfter: false,

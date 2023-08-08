@@ -151,8 +151,8 @@
                       $no++;
                       $id_guru           = $row['id_guru'];
                       $foto              = $row['foto'];
-                      $nama_guru              = $row['nama_guru'];
-                      $jenis_kelamin              = $row['jenis_kelamin'];
+                      $nama_guru         = $row['nama_guru'];
+                      $jenis_kelamin     = $row['jenis_kelamin'];
                       $mapel             = $row['mapel'];
                       ?>
                       <tr>

@@ -122,11 +122,11 @@
                           <div class="form-group form-input">
                            <select name="tahun_angkatan" class="form-control" required="">
                             <option value="">--Pilih--</option>
-                            <option value="2020/2021">2020/2021 </option>
-                            <option value="2021/2022">2021/2022 </option>
-                            <option value="2022/2023">2022/2023 </option>
-                            <option value="2023/2024">2023/2024 </option>
-                            <option value="2024/2025">2024/2025 </option>
+                            <option value="2020">2020 </option>
+                            <option value="2021">2021 </option>
+                            <option value="2022">2022 </option>
+                            <option value="2023">2023 </option>
+                            <option value="2024">2024 </option>
                           </select>
                         </div>
                       </div>
@@ -186,7 +186,7 @@
         type: 'warning',
         title: 'Perhatian !',
         heading: 'Success',
-        text: "Data Sudah ada .",
+        text: "Proses Gagal ! .",
         showHideTransition: 'slide',
         icon: 'warning',
         hideAfter: false,

@@ -82,12 +82,20 @@
                                   <input type="text" name="nis" class="form-control" id="nis_baru" readonly="">
                                 </div>
                                 <div class="col-md-6">
-                                  <label>Nama</label>
-                                  <input type="text" name="nis" class="form-control" id="nama_santri" readonly="">
+                                  <label>Nama Santri</label>
+                                  <input type="text" name="nama_santri" class="form-control" id="nama_santri" readonly="">
                                 </div>
                               </div>
-
-
+                              <div class="row mt-4">
+                                <div class="col-md-6">
+                                  <label>Nama Kelas</label>
+                                  <input type="text" name="nama_kelas" class="form-control" id="nama_kelas" readonly="">
+                                </div>
+                                <div class="col-md-6">
+                                  <label>Jenis Kelamin</label>
+                                  <input type="text" name="jenis_kelamin" class="form-control" id="jenis_kelamin" readonly="">
+                                </div>
+                              </div>
                             </div>
                           </div>
                           <div class="modal-footer">
@@ -268,11 +276,11 @@
                         <div class="form-group form-input">
                           <select name="tahun_angkatan" class="form-control" required="">
                             <option value="<?php echo $tahun_angkatan;?>"> <?php echo $tahun_angkatan;?> </option>
-                            <option value="2021">2020/2021 </option>
-                            <option value="2020">2021/2022 </option>
-                            <option value="2023">2022/2023 </option>
-                            <option value="2023/2024">2023/2024 </option>
-                            <option value="2024/2025">2024/2025 </option>
+                            <option value="2020">2020 </option>
+                            <option value="2021">2021 </option>
+                            <option value="2022">2022 </option>
+                            <option value="2023">2023 </option>
+                            <option value="2024">2024 </option>
                           </select>
                         </div>
                       </div>
@@ -490,6 +498,8 @@
               document.getElementById("tambah_pembayaran").style.display = "block";      
               $('#nis_baru').val(data.result[0].nis);
               $('#nama_santri').val(data.result[0].nama_santri);
+              $('#nama_kelas').val(data.result[0].nama_kelas);
+              $('#jenis_kelamin').val(data.result[0].jenis_kelamin);
             }else{
               alert("Data Santri Tidak Ditemukan !");
             }
@@ -508,7 +518,7 @@
           type: 'warning',
           title: 'Perhatian !',
           heading: 'Success',
-          text: "Data Sudah ada .",
+          text: "Proses Gagal ! .",
           showHideTransition: 'slide',
           icon: 'warning',
           hideAfter: false,

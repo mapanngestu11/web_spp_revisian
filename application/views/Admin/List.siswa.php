@@ -22,10 +22,10 @@
         <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800"><span class="badge badge-primary">Data Siswa</span></h1>
+            <h1 class="h3 mb-0 text-gray-800"><span class="badge badge-primary">Data Santri</span></h1>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="<?php echo base_url('Admin/Homepage/') ?>">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Data Siswa</li>
+              <li class="breadcrumb-item active" aria-current="page">Data Santri</li>
             </ol>
           </div>
 
@@ -35,7 +35,7 @@
             <div class="col-lg-12">
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Data Siswa</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Data Santri</h6>
                   <div class="row" style="width: 800px;">
                     <div class="col-sm-4 ml-80">
                       <button class="btn btn-success btn-round ml-auto" data-toggle="modal" data-target="#downloadExcel" style="float: right;">
@@ -50,7 +50,7 @@
                       </button>
                     </div>
                     <div class="col-sm-4">
-                      <button class="btn btn-primary block ml-auto" style=" float: right;" data-toggle="modal" data-target="#default" data-backdrop="static" data-keyboard="false">Tambah Siswa</button>
+                      <button class="btn btn-primary block ml-auto" style=" float: right;" data-toggle="modal" data-target="#default" data-backdrop="static" data-keyboard="false">Tambah Santri</button>
                     </div>
                   </div>
 
@@ -62,7 +62,7 @@
                     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
                       <div class="modal-content ">
                         <div class="modal-header">
-                          <h5 class="modal-title" id="myModalLabel1">Tambah Data Siswa</h5>
+                          <h5 class="modal-title" id="myModalLabel1">Tambah Data Santri</h5>
                           <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
                             <i data-feather="x"></i>
                           </button>
@@ -107,11 +107,11 @@
                                   <div class="form-group form-input">
                                    <select name="tahun_angkatan" class="form-control" required="">
                                     <option value="">--Pilih--</option>
-                                    <option value="2021">2020/2021 </option>
-                                    <option value="2020">2021/2022 </option>
-                                    <option value="2023">2022/2023 </option>
-                                    <option value="2023/2024">2023/2024 </option>
-                                    <option value="2024/2025">2024/2025 </option>
+                                    <option value="2020">2020 </option>
+                                    <option value="2021">2021 </option>
+                                    <option value="2022">2022 </option>
+                                    <option value="2023">2023 </option>
+                                    <option value="2024">2024 </option>
                                   </select>
                                 </div>
                               </div>
@@ -367,11 +367,11 @@
                       <div class="form-group form-input">
                         <select name="tahun_angkatan" class="form-control" required="">
                           <option value="<?php echo $tahun_angkatan;?>"> <?php echo $tahun_angkatan;?> </option>
-                          <option value="2021">2020/2021 </option>
-                          <option value="2020">2021/2022 </option>
-                          <option value="2023">2022/2023 </option>
-                          <option value="2023/2024">2023/2024 </option>
-                          <option value="2024/2025">2024/2025 </option>
+                          <option value="2020">2020 </option>
+                          <option value="2021">2021 </option>
+                          <option value="2022">2022 </option>
+                          <option value="2023">2023 </option>
+                          <option value="2024">2024 </option>
                         </select>
                       </div>
                     </div>
@@ -576,7 +576,7 @@
         type: 'warning',
         title: 'Perhatian !',
         heading: 'Success',
-        text: "Data Sudah ada .",
+        text: "Proses Gagal !",
         showHideTransition: 'slide',
         icon: 'warning',
         hideAfter: false,

@@ -32,7 +32,7 @@
                   <div class="row align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-uppercase mb-1">Data Pembayaran</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">$200,000</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-calendar fa-2x text-primary"></i>
@@ -103,9 +103,9 @@
                     <table class="table align-items-center table-flush">
                       <thead class="thead-light">
                         <tr>
-                          <th>Order ID</th>
-                          <th>Customer</th>
-                          <th>Item</th>
+                          <th>ID Pembayaran</th>
+                          <th>Nama Santri</th>
+                          <th>Jumlah Pembayaran</th>
                           <th>Status</th>
                           <th>Action</th>
                         </tr>
@@ -113,39 +113,33 @@
                       <tbody>
                         <tr>
                           <td><a href="#">RA0449</a></td>
-                          <td>Udin Wayang</td>
-                          <td>Nasi Padang</td>
-                          <td><span class="badge badge-success">Delivered</span></td>
+                          <td>Tanti Susilawati</td>
+                          <td>Rp.100.000</td>
+                          <td><span class="badge badge-success">Sukses</span></td>
                           <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
                         </tr>
                         <tr>
                           <td><a href="#">RA5324</a></td>
-                          <td>Jaenab Bajigur</td>
-                          <td>Gundam 90' Edition</td>
-                          <td><span class="badge badge-warning">Shipping</span></td>
+                          <td>Budi Ardiansyah</td>
+                          <td>Rp.100.000</td>
+                          <td><span class="badge badge-warning">Sukses</span></td>
                           <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
                         </tr>
                         <tr>
                           <td><a href="#">RA8568</a></td>
                           <td>Rivat Mahesa</td>
-                          <td>Oblong T-Shirt</td>
+                          <td>Rp.100.000</td>
                           <td><span class="badge badge-danger">Pending</span></td>
                           <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
                         </tr>
                         <tr>
                           <td><a href="#">RA1453</a></td>
                           <td>Indri Junanda</td>
-                          <td>Hat Rounded</td>
-                          <td><span class="badge badge-info">Processing</span></td>
+                          <td>Rp.100.000</td>
+                          <td><span class="badge badge-info">Proses</span></td>
                           <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
                         </tr>
-                        <tr>
-                          <td><a href="#">RA1998</a></td>
-                          <td>Udin Cilok</td>
-                          <td>Baby Powder</td>
-                          <td><span class="badge badge-success">Delivered</span></td>
-                          <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
-                        </tr>
+
                       </tbody>
                     </table>
                   </div>

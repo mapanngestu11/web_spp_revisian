@@ -33,7 +33,7 @@
         <li class="nav-item">
           <a class="nav-link" href="<?php echo base_url('Admin/Siswa/') ?>">
             <i class="fas fa-fw fa-users"></i>
-            <span>Data Siswa</span>
+            <span>Data Santri</span>
           </a>
         </li>
         <li class="nav-item">
