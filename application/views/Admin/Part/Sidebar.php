@@ -6,7 +6,7 @@
       </a>
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="<?php echo base_url('Admin/Homepage/') ?>">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
         </li>
@@ -74,7 +74,16 @@
         <div class="sidebar-heading">
           Pengaturan User
         </div>
-
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading">
+          Data Laporan
+        </div>
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo base_url('Admin/Laporan/') ?>">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Laporan</span>
+          </a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="<?php echo base_url('Admin/User/') ?>">
             <i class="fas fa-fw fa-users"></i>
