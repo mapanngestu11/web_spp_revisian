@@ -303,7 +303,7 @@
         type: 'warning',
         title: 'Perhatian !',
         heading: 'Success',
-        text: "Data Sudah ada .",
+        text: "Proses Gagal",
         showHideTransition: 'slide',
         icon: 'warning',
         hideAfter: false,

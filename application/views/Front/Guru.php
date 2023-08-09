@@ -53,10 +53,10 @@
 			</div>
 			<div class="row">
 				<?php foreach ($guru->result_array() as $data_guru) : 
-					$nama          = $data_guru['nama'];
+					$nama_guru     = $data_guru['nama_guru'];
 					$jenis_kelamin = $data_guru['jenis_kelamin'];
 					$mapel         = $data_guru['mapel'];
-					$telp          = $data_guru['telp'];
+					$no_hp          = $data_guru['no_hp'];
 					$email         = $data_guru['email'];
 					$foto          = $data_guru['foto'];
 					?>
@@ -67,11 +67,11 @@
 								<img src="<?php echo base_url() . "assets/"; ?>admin/upload/<?php echo $foto ?>" alt="foto_guru">
 								<ul class="social">
 									<li><a href="<?php echo $email;?>"><i class="fa fa-envelope"></i></a></li>
-									<li><a href="<?php echo $telp;?>"><i class="fa fa-phone"></i></a></li>
+									<li><a href="<?php echo $no_hp;?>"><i class="fa fa-phone"></i></a></li>
 								</ul>
 							</div>
 							<div class="teacher-content">
-								<h4><?php echo $nama;?><span><?php echo $mapel;?></span></h4>
+								<h4><?php echo $nama_guru;?><span><?php echo $mapel;?></span></h4>
 							</div>
 						</div>
 						<!--/ End Single Teacher -->

@@ -83,7 +83,7 @@ class Pembayaran  extends CI_Controller
                     'nama_ayah' => $nama_ayah,
                     'nama_ibu' => $nama_ibu,
                     'no_hp_ortu' => $no_hp_ortu,
-                    'foto' => $gambar,
+                    'foto' => $foto,
 
                 );
 

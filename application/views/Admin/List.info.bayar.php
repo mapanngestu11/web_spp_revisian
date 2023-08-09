@@ -47,7 +47,7 @@
                     <tfoot>
                       <tr>
                         <th>No</th>
-                        <th>Tahun Ajaran</th>
+                        <th>Tahun Angkatan</th>
                         <th>Info Jumlah Pembayaran</th>
                         <th>Action</th>
                       </tr>

@@ -232,21 +232,22 @@
 
                       $no++;
                       $id_santri   = $row['id_santri'];
-                      $gambar     = $row['foto'];
+                      $foto     = $row['foto'];
                       $nama_santri = $row['nama_santri'];
                       $nama_kelas      = $row['nama_kelas'];
+
                       ?>
                       <tr>
                         <td><?php echo $no ?></td>
                         <td> 
-                          <?php  if ($gambar != Null) { ?>
-                            <img class="gambar-project" src="<?php echo base_url() . "assets/"; ?>admin/upload/<?php echo $gambar ?>">
+                          <?php  if ($foto != Null) { ?>
+                            <img class="gambar-project" src="<?php echo base_url() . "assets/"; ?>admin/upload/<?php echo $foto ?>">
                           <?php  }else{ ?>
                             <img class="gambar-project" src="<?php echo base_url() . "assets/"; ?>admin/upload/user_default.png">
                           <?php  } ?>
                         </td>
                         <td><?php echo $nama_santri ?></td>
-                        <td><?php echo $nama_kelas;?></td>
+                         <td><?php echo $nama_kelas;?></td>
                         <td>
                           <div class="form-button-action">
                             <a class="btn btn-link btn-primary btn-lg" data-toggle="modal" data-target="#ModalEdit<?php echo $id_santri; ?>"><span class="fa fa-edit" style="color:white;"></span></a>
@@ -363,7 +364,7 @@
                   </div>
                   <div class="row mt-4">
                     <div class="col-md-6">
-                      <label>Tahun Ajaran</label>
+                      <label>Tahun Angkatan</label>
                       <div class="form-group form-input">
                         <select name="tahun_angkatan" class="form-control" required="">
                           <option value="<?php echo $tahun_angkatan;?>"> <?php echo $tahun_angkatan;?> </option>

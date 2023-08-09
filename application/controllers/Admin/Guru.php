@@ -53,7 +53,7 @@ class Guru  extends CI_Controller
 
                 $foto = $gbr['file_name'];
 
-                $nama_guru              = $this->input->post('nama_guru');
+                $nama_guru         = $this->input->post('nama_guru');
                 $jenis_kelamin     = $this->input->post('jenis_kelamin');
                 $mapel             = $this->input->post('mapel');
                 $no_hp              = $this->input->post('no_hp');
