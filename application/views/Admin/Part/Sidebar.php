@@ -70,10 +70,7 @@
             <span>Pesan Bantuan</span>
           </a>
         </li>
-        <hr class="sidebar-divider">
-        <div class="sidebar-heading">
-          Pengaturan User
-        </div>
+
         <hr class="sidebar-divider">
         <div class="sidebar-heading">
           Data Laporan
@@ -84,6 +81,10 @@
             <span>Laporan</span>
           </a>
         </li>
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading">
+          Pengaturan User
+        </div>
         <li class="nav-item">
           <a class="nav-link" href="<?php echo base_url('Admin/User/') ?>">
             <i class="fas fa-fw fa-users"></i>
