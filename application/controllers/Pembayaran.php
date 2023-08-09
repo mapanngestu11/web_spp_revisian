@@ -36,10 +36,12 @@ class Pembayaran extends CI_Controller {
 		if($cek_nisn == NULL){
 			$data = (object)array();
 
-			$siswa['siswa']=$this->M_siswa->cek_nisn($nis,'tbl_siswa');
+			$siswa['siswa']=$this->M_siswa->cek_nisn($nis);
 			
+			
+
 		// data siswa
-			$data_siswa = json_encode($siswa['siswa']);
+			$data_siswa = json_encode($siswa);
 
 			$decode_siswa = json_decode($data_siswa);
 

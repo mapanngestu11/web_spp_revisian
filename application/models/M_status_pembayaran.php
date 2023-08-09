@@ -9,6 +9,10 @@ class M_status_pembayaran extends CI_Model{
 	function input_data($data,$table){
 		$this->db->insert($table,$data);
 	}
+	
+	function insert_data($data_status_pembayaran,$table){
+		$this->db->insert($table,$data_status_pembayaran);
+	}
 
 	function tampil_data(){
 		$this->db->select('*');

@@ -30,9 +30,14 @@ class M_pembayaran extends CI_Model{
 		return $hsl;
 	}
 
+	function insert_data($data_pembayaran,$table){
+		$this->db->insert($table,$data_pembayaran);
+	}
+
 	function input_data($data,$table){
 		$this->db->insert($table,$data);
 	}
+
 
 	function pembayaran_kelas_x(){
 		$this->db->select('*');

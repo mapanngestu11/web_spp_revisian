@@ -93,7 +93,7 @@ class Guru  extends CI_Controller
 }
 public function update($id_guru)
 {
- date_default_timezone_set("Asia/Jakarta");
+   date_default_timezone_set("Asia/Jakarta");
         $config['upload_path'] = './assets/admin/upload'; //path folder
         $config['allowed_types'] = 'jpg|png|jpeg'; //type yang dapat diakses bisa anda sesuaikan
         $config['encrypt_name'] = TRUE; //nama_guru yang terupload nantinya
@@ -122,7 +122,7 @@ public function update($id_guru)
                 $mapel             = $this->input->post('mapel');
                 $no_hp              = $this->input->post('no_hp');
                 $email             = $this->input->post('email');
-             
+                
 
                 $data = array(
 
@@ -154,7 +154,7 @@ public function update($id_guru)
             $mapel             = $this->input->post('mapel');
             $no_hp              = $this->input->post('no_hp');
             $email             = $this->input->post('email');
-          
+            
 
             $data = array(
 

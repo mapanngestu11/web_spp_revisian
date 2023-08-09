@@ -41,8 +41,8 @@ class M_siswa extends CI_Model
             A.email as email,
             A.alamat as alamat,
             A.tahun_angkatan,
-            jumlah_bayar');
-        $this->db->join('tbl_info_bayar', 'tbl_info_bayar.tahun_angkatan = A.tahun_angkatan');
+            B.jumlah_bayar');
+        $this->db->join('tbl_info_bayar as B', 'tbl_info_bayar.tahun_angkatan = A.tahun_angkatan');
         $this->db->where('nis', $nis);
         $hsl = $this->db->get('tbl_santri AS A')->result();
         return $hsl;
@@ -56,8 +56,9 @@ class M_siswa extends CI_Model
     function cek_nis($nis)
     {
         $this->db->select('*');
+        $this->db->join('tbl_info_bayar as b', 'b.tahun_angkatan = a.tahun_angkatan');
         $this->db->where('nis',$nis);
-        $hsl = $this->db->get('tbl_santri')->result();
+        $hsl = $this->db->get('tbl_santri as a')->result();
         return $hsl;
     }
 }
