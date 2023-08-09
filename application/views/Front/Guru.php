@@ -17,7 +17,12 @@
 	<!-- Header -->
 	<?php include 'Part/Header.php';?>
 	<!--/ End Header -->
-
+	<style type="text/css">
+		.foto_guru{
+			height: 360px !important;
+			
+		}
+	</style>
 	<!-- Breadcrumb -->
 	<div class="breadcrumbs overlay" style="background-image:url('images/breadcrumb-bg.jpg')">
 		<div class="container">
@@ -64,7 +69,7 @@
 						<!-- Single Teacher -->
 						<div class="single-teacher">
 							<div class="teacher-head overlay">
-								<img src="<?php echo base_url() . "assets/"; ?>admin/upload/<?php echo $foto ?>" alt="foto_guru">
+								<img src="<?php echo base_url() . "assets/"; ?>admin/upload/<?php echo $foto ?>" alt="foto_guru" class="foto_guru">
 								<ul class="social">
 									<li><a href="<?php echo $email;?>"><i class="fa fa-envelope"></i></a></li>
 									<li><a href="<?php echo $no_hp;?>"><i class="fa fa-phone"></i></a></li>
