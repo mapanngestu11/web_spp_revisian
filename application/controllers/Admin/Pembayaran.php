@@ -25,8 +25,7 @@ class Pembayaran  extends CI_Controller
 
     public function index()
     {
-        $data['data_kelas'] = $this->M_kelas->tampil_data();
-        $data['siswa'] = $this->M_siswa->tampil_data();
+        $data['pembayaran'] = $this->M_pembayaran->tampil_data();
         $this->load->view('Admin/List.Pembayaran.php',$data);
     }
 
@@ -88,9 +87,12 @@ class Pembayaran  extends CI_Controller
                     'jumlah_bayar' => $jumlah_bayar,
                     'email' => $email,
                     'alamat' => $alamat,
+
                     'bulan' => $cek_bulan,
                     'tanggal_upload' => $tanggal_upload
-                    
+
+
+
                 );
 
                 $data_status_pembayaran =  array(
@@ -133,142 +135,142 @@ class Pembayaran  extends CI_Controller
     {
 
         date_default_timezone_set("Asia/Jakarta");
-        $config['upload_path'] = './assets/admin/upload'; //path folder
-        $config['allowed_types'] = 'jpg|png|jpeg'; //type yang dapat diakses bisa anda sesuaikan
-        $config['encrypt_name'] = TRUE; //nama_guru yang terupload nantinya
-        $config['max_size']  = 200000; //Batas Ukuran
+                $config['upload_path'] = './assets/admin/upload'; //path folder
+                $config['allowed_types'] = 'jpg|png|jpeg'; //type yang dapat diakses bisa anda sesuaikan
+                $config['encrypt_name'] = TRUE; //nama_guru yang terupload nantinya
+                $config['max_size']  = 200000; //Batas Ukuran
 
-        $this->upload->initialize($config);
-        if (!empty($_FILES['foto']['name'])) {
-            if ($this->upload->do_upload('foto')) {
-                $gbr = $this->upload->data();
+                $this->upload->initialize($config);
+                if (!empty($_FILES['foto']['name'])) {
+                    if ($this->upload->do_upload('foto')) {
+                        $gbr = $this->upload->data();
                 //Compress Image
-                $config['image_library'] = 'gd2';
-                $config['source_image'] = './assets/admin/upload' . $gbr['file_name'];
-                $config['create_thumb'] = FALSE;
-                $config['maintain_ratio'] = FALSE;
-                $config['quality'] = '100%';
-                $config['width'] = 360;
-                $config['height'] = 360;
-                $config['new_image'] = './assets/admin/upload' . $gbr['file_name'];
-                $this->load->library('image_lib', $config);
-                $this->image_lib->resize();
+                        $config['image_library'] = 'gd2';
+                        $config['source_image'] = './assets/admin/upload' . $gbr['file_name'];
+                        $config['create_thumb'] = FALSE;
+                        $config['maintain_ratio'] = FALSE;
+                        $config['quality'] = '100%';
+                        $config['width'] = 360;
+                        $config['height'] = 360;
+                        $config['new_image'] = './assets/admin/upload' . $gbr['file_name'];
+                        $this->load->library('image_lib', $config);
+                        $this->image_lib->resize();
 
-                $foto = $gbr['file_name'];
-                $id_santri           = $this->input->post('id_santri');
-                $nis                    = $this->input->post('nis');
-                $nama_santri             = $this->input->post('nama_santri');
-                $tahun_angkatan           = $this->input->post('tahun_angkatan');
-                $nama_kelas                  = $this->input->post('nama_kelas');
-                $jenis_kelamin          = $this->input->post('jenis_kelamin');
+                        $foto = $gbr['file_name'];
+                        $id_santri           = $this->input->post('id_santri');
+                        $nis                    = $this->input->post('nis');
+                        $nama_santri             = $this->input->post('nama_santri');
+                        $tahun_angkatan           = $this->input->post('tahun_angkatan');
+                        $nama_kelas                  = $this->input->post('nama_kelas');
+                        $jenis_kelamin          = $this->input->post('jenis_kelamin');
 
 
-                $no_hp                  = $this->input->post('no_hp');
-                $email                  = $this->input->post('email');
-                $alamat                  = $this->input->post('alamat');
-                $nama_ayah              = $this->input->post('nama_ayah');
-                $nama_ibu               = $this->input->post('nama_ibu');
-                $no_hp_ortu             = $this->input->post('no_hp_ortu');
+                        $no_hp                  = $this->input->post('no_hp');
+                        $email                  = $this->input->post('email');
+                        $alamat                  = $this->input->post('alamat');
+                        $nama_ayah              = $this->input->post('nama_ayah');
+                        $nama_ibu               = $this->input->post('nama_ibu');
+                        $no_hp_ortu             = $this->input->post('no_hp_ortu');
 
-                $tanggal                = date('d-M-y');
+                        $tanggal                = date('d-M-y');
 
-                $data = array(
+                        $data = array(
 
-                    'nis' => $nis,
-                    'nama_santri' => $nama_santri,
-                    'tahun_angkatan' => $tahun_angkatan,
-                    'nama_kelas' => $nama_kelas,
-                    'jenis_kelamin' => $jenis_kelamin,
-                    'no_hp' => $no_hp,
-                    'email' => $email,
-                    'alamat' => $alamat,
-                    'nama_ayah' => $nama_ayah,
-                    'nama_ibu' => $nama_ibu,
-                    'no_hp_ortu' => $no_hp_ortu,
-                    'foto' => $foto,
+                            'nis' => $nis,
+                            'nama_santri' => $nama_santri,
+                            'tahun_angkatan' => $tahun_angkatan,
+                            'nama_kelas' => $nama_kelas,
+                            'jenis_kelamin' => $jenis_kelamin,
+                            'no_hp' => $no_hp,
+                            'email' => $email,
+                            'alamat' => $alamat,
+                            'nama_ayah' => $nama_ayah,
+                            'nama_ibu' => $nama_ibu,
+                            'no_hp_ortu' => $no_hp_ortu,
+                            'foto' => $foto,
 
-                );
-                
-                $where = array(
-                    'id_santri' => $id_santri
-                );
+                        );
 
-                $this->M_siswa->update_data($where, $data, 'tbl_santri');
-                echo $this->session->set_flashdata('msg', 'success-update');
-                redirect('Admin/Siswa');
-            } else {
-                echo $this->session->set_flashdata('msg', 'warning');
-                redirect('Admin/Siswa');
+                        $where = array(
+                            'id_santri' => $id_santri
+                        );
+
+                        $this->M_siswa->update_data($where, $data, 'tbl_santri');
+                        echo $this->session->set_flashdata('msg', 'success-update');
+                        redirect('Admin/Siswa');
+                    } else {
+                        echo $this->session->set_flashdata('msg', 'warning');
+                        redirect('Admin/Siswa');
+                    }
+                } else {
+
+                    $id_santri           = $this->input->post('id_santri');
+                    $nis           = $this->input->post('nis');
+                    $nama_santri             = $this->input->post('nama_santri');
+                    $tahun_angkatan           = $this->input->post('tahun_angkatan');
+                    $nama_kelas                  = $this->input->post('nama_kelas');
+                    $jenis_kelamin          = $this->input->post('jenis_kelamin');
+
+
+                    $no_hp                  = $this->input->post('no_hp');
+                    $email                  = $this->input->post('email');
+                    $alamat                  = $this->input->post('alamat');
+                    $nama_ayah              = $this->input->post('nama_ayah');
+                    $nama_ibu               = $this->input->post('nama_ibu');
+                    $no_hp_ortu             = $this->input->post('no_hp_ortu');
+
+                    $data = array(
+
+                        'nis' => $nis,
+                        'nama_santri' => $nama_santri,
+                        'tahun_angkatan' => $tahun_angkatan,
+                        'nama_kelas' => $nama_kelas,
+                        'jenis_kelamin' => $jenis_kelamin,
+                        'no_hp' => $no_hp,
+                        'email' => $email,
+                        'alamat' => $alamat,
+                        'nama_ayah' => $nama_ayah,
+                        'nama_ibu' => $nama_ibu,
+                        'no_hp_ortu' => $no_hp_ortu
+
+                    );
+                    $where = array(
+                        'id_santri' => $id_santri
+                    );
+
+                    $this->M_siswa->update_data($where, $data, 'tbl_santri');
+                    echo $this->session->set_flashdata('msg', 'success-update');
+                    redirect('Admin/Siswa');
+
+                }
+
             }
-        } else {
-
-            $id_santri           = $this->input->post('id_santri');
-            $nis           = $this->input->post('nis');
-            $nama_santri             = $this->input->post('nama_santri');
-            $tahun_angkatan           = $this->input->post('tahun_angkatan');
-            $nama_kelas                  = $this->input->post('nama_kelas');
-            $jenis_kelamin          = $this->input->post('jenis_kelamin');
-
-
-            $no_hp                  = $this->input->post('no_hp');
-            $email                  = $this->input->post('email');
-            $alamat                  = $this->input->post('alamat');
-            $nama_ayah              = $this->input->post('nama_ayah');
-            $nama_ibu               = $this->input->post('nama_ibu');
-            $no_hp_ortu             = $this->input->post('no_hp_ortu');
-
-            $data = array(
-
-                'nis' => $nis,
-                'nama_santri' => $nama_santri,
-                'tahun_angkatan' => $tahun_angkatan,
-                'nama_kelas' => $nama_kelas,
-                'jenis_kelamin' => $jenis_kelamin,
-                'no_hp' => $no_hp,
-                'email' => $email,
-                'alamat' => $alamat,
-                'nama_ayah' => $nama_ayah,
-                'nama_ibu' => $nama_ibu,
-                'no_hp_ortu' => $no_hp_ortu
-
-            );
-            $where = array(
-                'id_santri' => $id_santri
-            );
-
-            $this->M_siswa->update_data($where, $data, 'tbl_santri');
-            echo $this->session->set_flashdata('msg', 'success-update');
-            redirect('Admin/Siswa');
-
-        }
-
-    }
-    public function cek_nis()
-    {
-        $data = (object)array();
-        $nis = $this->input->post('input_check_nis');
+            public function cek_nis()
+            {
+                $data = (object)array();
+                $nis = $this->input->post('input_check_nis');
         // $nis = '2022001';
-        $cek_nis = $this->M_siswa->cek_nis($nis);
+                $cek_nis = $this->M_siswa->cek_nis($nis);
 
-        $data_nis = json_encode($cek_nis);
+                $data_nis = json_encode($cek_nis);
 
-        $decode_nis = json_decode($data_nis);
-        
-        if ($decode_nis != NULL) {
+                $decode_nis = json_decode($data_nis);
 
-            $hasil = "Data Ada";
-            $data->result  = $decode_nis;
-            $data->success         = TRUE;
-            $data->message        = "True !";
+                if ($decode_nis != NULL) {
 
-        }else{
+                    $hasil = "Data Ada";
+                    $data->result  = $decode_nis;
+                    $data->success         = TRUE;
+                    $data->message        = "True !";
 
-            $hasil = "Data Kosong";
-            $data->result = FALSE ;
-            $data->status = FALSE;
+                }else{
+
+                    $hasil = "Data Kosong";
+                    $data->result = FALSE ;
+                    $data->status = FALSE;
+                }
+
+                echo json_encode($data);
+
+            }
         }
-
-        echo json_encode($data);
-
-    }
-}

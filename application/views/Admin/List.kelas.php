@@ -97,7 +97,7 @@
                     <tr>
                       <th>No</th>
                       <th>Kelas</th>
-                      <th>Tahun Ajaran</th>
+                      <th>Tahun Angkatan</th>
                       <th>Action</th>
                     </tr>
                   </thead>

@@ -58,7 +58,7 @@
 				<div class="col-lg-6 offset-lg-3 col-12">
 					<div class="section-title bg">
 						<h2>Kegiatan Rumah qur'an Al-Mubarok</h2>
-						<p> Rumah Qur'an Al-Mubarok merupakan sebuah lembaga pendidikan Al-Qur'an Sebagai sarana pendidikan dalam belajar membaca dan menghafal Al-Qur'an dengan mengembangkan konsep nilai-nilai Al-Qur'an dan As-Sunnah dengan menekankan kurikulum karakter iman agar bisa terbentuknya generasi Qur’ani yang berilmu dan beradab calon pemimpin bangsa. </p>
+						
 						<div class="icon"><i class="fa fa-clone"></i></div>
 					</div>
 				</div>
