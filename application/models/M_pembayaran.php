@@ -7,7 +7,7 @@ class M_pembayaran extends CI_Model{
 
 	function cek_pembayaran ($nis,$bulan) {
 		$this->db->select('
-			nama_siswa');
+			nama_santri');
 		$this->db->where('nis',$nisn);
 		$this->db->where('bulan',$bulan);
 		$hsl = $this->db->get('tbl_pembayaran')->result();
@@ -16,7 +16,7 @@ class M_pembayaran extends CI_Model{
 	
 	function tampil_data(){
 		$this->db->select('*');
-		$this->db->group_by('tbl_pembayaran.nama_siswa');
+		$this->db->group_by('tbl_pembayaran.nama_santri');
 		$hsl = $this->db->get('tbl_pembayaran');
 		return $hsl;
 	}
@@ -24,7 +24,7 @@ class M_pembayaran extends CI_Model{
 	function hari_ini($hari_ini){
 
 		$this->db->select('*');
-		$this->db->group_by('tbl_pembayaran.nama_siswa');
+		$this->db->group_by('tbl_pembayaran.nama_santri');
 		$this->db->where('tanggal_upload',$hari_ini);
 		$hsl = $this->db->get('tbl_pembayaran');
 		return $hsl;
@@ -71,7 +71,7 @@ class M_pembayaran extends CI_Model{
 		$this->db->select('*');
 		$this->db->join('tbl_siswa','tbl_pembayaran.nis = tbl_siswa.nis','left');
 		$this->db->where('tbl_pembayaran.nisn',$nisn);
-		$this->db->group_by('tbl_pembayaran.nama_siswa');
+		$this->db->group_by('tbl_pembayaran.nama_santri');
 		$hsl = $this->db->get('tbl_pembayaran');
 		return $hsl;
 	}
