@@ -124,12 +124,12 @@ class Pembayaran  extends CI_Controller
 
 
     }
-    public function delete($id_santri)
+    public function delete($id_pembayaran)
     {
-        $id_santri = $this->input->post('id_santri');
-        $this->M_siswa->delete_data($id_santri);
+        $id_pembayaran = $this->input->post('id_pembayaran');
+        $this->M_pembayaran->delete_data($id_pembayaran);
         echo $this->session->set_flashdata('msg', 'success-hapus');
-        redirect('Admin/Siswa');
+        redirect('Admin/Pembayaran');
     }
     public function update()
     {

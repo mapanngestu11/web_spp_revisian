@@ -37,6 +37,12 @@ class M_pembayaran extends CI_Model{
 	function input_data($data,$table){
 		$this->db->insert($table,$data);
 	}
+	function delete_data($id_pembayaran)
+	{
+		$hsl = $this->db->query("DELETE FROM tbl_pembayaran WHERE id_pembayaran='$id_pembayaran'");
+		return $hsl;
+	}
+
 
 
 	function pembayaran_kelas_x(){
