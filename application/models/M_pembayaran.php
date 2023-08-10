@@ -43,8 +43,6 @@ class M_pembayaran extends CI_Model{
 		return $hsl;
 	}
 
-
-
 	function pembayaran_kelas_x(){
 		$this->db->select('*');
 		$this->db->where('jenjang','X');
@@ -79,6 +77,32 @@ class M_pembayaran extends CI_Model{
 		$this->db->where('tbl_pembayaran.nisn',$nisn);
 		$this->db->group_by('tbl_pembayaran.nama_santri');
 		$hsl = $this->db->get('tbl_pembayaran');
+		return $hsl;
+	}
+	function laporan_data()
+	{
+		$this->db->select('*');
+		$this->db->group_by('tbl_pembayaran.nama_santri');
+		$hsl = $this->db->get('tbl_pembayaran');
+		return $hsl;
+	}
+	function cetak_laporan($bulan,$tahun)
+	{
+		// $bulan = 'August';
+		// var_dump($bulan);
+		// die();
+		$this->db->select('
+			a.nis,
+			a.nama_santri,
+			a.nama_kelas,
+			a.pesan,
+			a.jumlah_bayar,
+			b.bulan,
+			b.status_code,
+			b.transaction_time');
+		$this->db->join('tbl_status_pembayaran as b','a.nis = b.nis','left');
+		$this->db->where('b.bulan',$bulan);
+		$hsl = $this->db->get('tbl_pembayaran as a')->result();
 		return $hsl;
 	}
 

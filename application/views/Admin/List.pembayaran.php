@@ -314,13 +314,13 @@
           },
 
           success: function(data) {
-            console.log(data.result);
+            console.log(data.message);
 
-            var jumlah_pembayaran = formatRupiah(data.result[0].jumlah_bayar);
-            if (data.result != '') {
+
+            if (data.result != 'false') {
 
               cek_jenis_kelamin = data.result[0].jenis_kelamin;
-
+              var jumlah_pembayaran = formatRupiah(data.result[0].jumlah_bayar);
 
               if (cek_jenis_kelamin == 'L') {
                var jk = 'Laki - Laki';
@@ -350,7 +350,7 @@
             textarea.readOnly = true;
 
 
-          }else{
+          }else if (data.result == 'false'){
             alert("Data Santri Tidak Ditemukan !");
           }
         },

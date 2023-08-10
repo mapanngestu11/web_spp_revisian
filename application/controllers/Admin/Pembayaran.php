@@ -261,13 +261,14 @@ class Pembayaran  extends CI_Controller
                     $hasil = "Data Ada";
                     $data->result  = $decode_nis;
                     $data->success         = TRUE;
-                    $data->message        = "True !";
+                    $data->message        = "TRUE";
 
                 }else{
 
                     $hasil = "Data Kosong";
                     $data->result = FALSE ;
                     $data->status = FALSE;
+                    $data->message        = "FALSE";
                 }
 
                 echo json_encode($data);
