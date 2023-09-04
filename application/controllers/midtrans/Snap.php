@@ -43,8 +43,8 @@ class Snap extends CI_Controller {
 		
 
 		$nis = $this->input->post('nis');
-		$nama_siswa = $this->input->post('nama_siswa');
-		$kelas = $this->input->post('kelas');
+		$nama_santri = $this->input->post('nama_santri');
+		$nama_kelas = $this->input->post('nama_kelas');
 		$no_hp_ortu = $this->input->post('no_hp_ortu');
 		$pesan = $this->input->post('pesan');
 		$bulan = $this->input->post('bulan');
@@ -53,12 +53,14 @@ class Snap extends CI_Controller {
 		$alamat = $this->input->post('alamat');
 		$tanggal_upload = date('Y-m-d h:i:s');
 
+
+		$cek_bulan = date('F',strtotime($bulan));
 		// Required
 		$transaction_details = array(
 			'order_id' => rand(),
 		  'gross_amount' => $jumlah_bayar, // no decimal allowed for creditcard
 		  'nis' => $nis,
-		  'nama_siswa' => $nama_siswa
+		  'nama_santri' => $nama_santri,
 		);
 
 		// Optional
@@ -66,7 +68,7 @@ class Snap extends CI_Controller {
 			'id' => 'a1',
 			'price' => $jumlah_bayar,
 			'quantity' => 1,
-			'name' => "Pembayaran SPP Bulan".$bulan
+			'name' => "Pembayaran SPP Bulan".$cek_bulan
 		);
 
 
@@ -76,7 +78,7 @@ class Snap extends CI_Controller {
 
 		// Optional
 		// $billing_address = array(
-		// 	'first_name'    => $nama_siswa,
+		// 	'first_name'    => $nama_santri,
 		// 	'address'       => $alamat,
 		// 	'phone'         => $no_hp_ortu,
 		// 	'country_code'  => 'IDN'
@@ -84,7 +86,7 @@ class Snap extends CI_Controller {
 
 		// // Optional
 		// $shipping_address = array(
-		// 	'first_name'    => $nama_siswa,
+		// 	'first_name'    => $nama_santri,
 		// 	'address'       => $alamat,
 		// 	'phone'         => $no_hp_ortu,
 		// 	'country_code'  => 'IDN'
@@ -92,10 +94,9 @@ class Snap extends CI_Controller {
 
 		// Optional
 		$customer_details = array(
-			'first_name'    => $nama_siswa,
-			'kelas'     => $kelas,
-			'email'         => $email,
-			'phone'         => $no_hp_ortu
+			'first_name'    => $nama_santri
+
+
 			// 'billing_address'  => $billing_address,
 			// 'shipping_address' => $shipping_address
 		);
@@ -123,18 +124,19 @@ class Snap extends CI_Controller {
 
 		$data = array(
 			'nis' => $nis,
-			'nama_siswa' => $nama_siswa,
-			'kelas' => $kelas,
+			'nama_santri' => $nama_santri,
+			'nama_kelas' => $nama_kelas,
 			'no_hp_ortu' => $no_hp_ortu,
-			'pesan' => $pesan,
+			'pesan' 	=> $pesan,
 			'jumlah_bayar' => $jumlah_bayar,
 			'email' => $email,
 			'alamat' => $alamat,
-			'bulan' => $bulan,
+			'bulan' => $cek_bulan,
 			'tanggal_upload' => $tanggal_upload
 		);
 
 
+		$input = $this->M_pembayaran->input_data($data, 'tbl_pembayaran');
 
 		error_log(json_encode($transaction_data));
 		// $this->M_pembayaran->input_data($data,'tbl_pembayaran');
@@ -149,10 +151,13 @@ class Snap extends CI_Controller {
 	public function finish()
 	{
 		$result = json_decode($this->input->post('result_data'),true);
-
-		$nama_siswa = $this->input->post('nama_siswa');
+		echo "<pre>";
+		var_dump($result);
+		echo "</pre>";
+		die();
+		$nama_santri = $this->input->post('nama_santri');
 		$kelas = $this->input->post('kelas');
-		$nis = $this->input->post('nis');
+		$nisn = $this->input->post('nisn');
 		$bulan =  date('F');
 		$tanggal_upload =  date('Y-m-d h:i:s');
 
@@ -160,8 +165,8 @@ class Snap extends CI_Controller {
 		$data  = [
 
 			'order_id' => $result['order_id'],	
-			'nis' => $nis,
-			'nama_siswa' => $nama_siswa,
+			'nisn' => $nisn,
+			'nama_santri' => $nama_santri,
 			'kelas' => $kelas,
 			'bulan' => $bulan,
 			'tanggal_upload' => $tanggal_upload,

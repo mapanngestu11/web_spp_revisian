@@ -13,7 +13,7 @@ class Kontak extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('front/Kontak');
+		$this->load->view('Front/Kontak');
 	}
 	public function add()
 	{

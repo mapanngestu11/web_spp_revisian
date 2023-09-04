@@ -43,34 +43,23 @@ class M_pembayaran extends CI_Model{
 		return $hsl;
 	}
 
-	function pembayaran_kelas_x(){
+	function get_data_pembayaran($nis)
+	{	
 		$this->db->select('*');
-		$this->db->where('jenjang','X');
-		$hsl = $this->db->get('tbl_status_pembayaran');
-		return $hsl;
-	}
-	function pembayaran_kelas_xi(){
-		$this->db->select('*');
-		$this->db->where('jenjang','XI');
-		$hsl = $this->db->get('tbl_status_pembayaran');
-		return $hsl;
-	}
-	function pembayaran_kelas_xii(){
-		$this->db->select('*');
-		$this->db->where('jenjang','XII');
-		$hsl = $this->db->get('tbl_status_pembayaran');
-		return $hsl;
+		$this->db->join('tbl_santri as b','b.tahun_angkatan = a.tahun_angkatan');
+		$this->db->where('b.nis',$nis);
+		return $this->db->get('tbl_info_bayar as a');
 	}
 	function get_detail_siswa($nis){
 		$this->db->select('*');
-		
+
 		// $this->db->join('tbl_pembayaran','tbl_status_pembayaran.nisn = tbl_pembayaran.nisn','inner');
 		$this->db->where('tbl_status_pembayaran.nis',$nis);
 		$this->db->where('tbl_status_pembayaran.status_code','201');
 		$hsl = $this->db->get('tbl_status_pembayaran');
 		return $hsl;
 	}
-	
+
 	function get_detail_siswa_1($nis){
 		$this->db->select('*');
 		$this->db->join('tbl_siswa','tbl_pembayaran.nis = tbl_siswa.nis','left');
@@ -106,5 +95,5 @@ class M_pembayaran extends CI_Model{
 		return $hsl;
 	}
 
-	
+
 }

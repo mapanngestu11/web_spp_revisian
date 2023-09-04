@@ -15,6 +15,6 @@ class Guru extends CI_Controller {
 	{
 
 		$data['guru'] = $this->M_guru->tampil_data();
-		$this->load->view('front/guru',$data);
+		$this->load->view('Front/Guru',$data);
 	}
 }

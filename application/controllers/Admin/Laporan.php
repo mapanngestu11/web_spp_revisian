@@ -30,7 +30,7 @@ class Laporan  extends CI_Controller
         $tanggal = $this->input->post('tanggal');
         $tahun = date('Y', strtotime($tanggal));
         $bulan = date('F', strtotime($tanggal));
-
+        
         $data['laporan'] = $this->M_pembayaran->cetak_laporan($bulan,$tahun);
         $this->load->view('Admin/Cetak_laporan.php',$data);
 

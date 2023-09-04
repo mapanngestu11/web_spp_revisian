@@ -28,6 +28,15 @@ class Siswa  extends CI_Controller
         $this->load->view('Admin/List.siswa.php',$data);
     }
 
+    public function data_santri()
+    {
+        $nis = $this->session->userdata('nis');
+        $data['data_kelas'] = $this->M_kelas->tampil_data();
+        $data['siswa'] = $this->M_siswa->tampil_data_by_nis($nis);
+
+        $this->load->view('Admin/List.data.santri.php',$data);
+    }
+
     public function add()
     {
         date_default_timezone_set("Asia/Jakarta");
@@ -225,6 +234,128 @@ public function update()
             $this->M_siswa->update_data($where, $data, 'tbl_santri');
             echo $this->session->set_flashdata('msg', 'success-update');
             redirect('Admin/Siswa');
+
+        }
+
+    }
+
+    public function update_data_santri()
+    {
+
+        date_default_timezone_set("Asia/Jakarta");
+        $config['upload_path'] = './assets/admin/upload'; //path folder
+        $config['allowed_types'] = 'jpg|png|jpeg'; //type yang dapat diakses bisa anda sesuaikan
+        $config['encrypt_name'] = TRUE; //nama_guru yang terupload nantinya
+        $config['max_size']  = 200000; //Batas Ukuran
+
+        $this->upload->initialize($config);
+        if (!empty($_FILES['foto']['name'])) {
+            if ($this->upload->do_upload('foto')) {
+                $gbr = $this->upload->data();
+                //Compress Image
+                $config['image_library'] = 'gd2';
+                $config['source_image'] = './assets/admin/upload' . $gbr['file_name'];
+                $config['create_thumb'] = FALSE;
+                $config['maintain_ratio'] = FALSE;
+                $config['quality'] = '100%';
+                $config['width'] = 360;
+                $config['height'] = 360;
+                $config['new_image'] = './assets/admin/upload' . $gbr['file_name'];
+                $this->load->library('image_lib', $config);
+                $this->image_lib->resize();
+
+                $foto = $gbr['file_name'];
+                $id_santri           = $this->input->post('id_santri');
+                $nis                    = $this->input->post('nis');
+                $password = md5($this->input->post('password'));
+                $nama_santri             = $this->input->post('nama_santri');
+                $tahun_angkatan           = $this->input->post('tahun_angkatan');
+
+                $jenis_kelamin          = $this->input->post('jenis_kelamin');
+
+
+                $no_hp                  = $this->input->post('no_hp');
+                $email                  = $this->input->post('email');
+                $alamat                  = $this->input->post('alamat');
+                $nama_ayah              = $this->input->post('nama_ayah');
+                $nama_ibu               = $this->input->post('nama_ibu');
+                $no_hp_ortu             = $this->input->post('no_hp_ortu');
+
+                $tanggal                = date('d-M-y');
+
+                $data = array(
+
+                    'nis' => $nis,
+                    'password' => $password,
+                    'nama_santri' => $nama_santri,
+                    'tahun_angkatan' => $tahun_angkatan,
+
+                    'jenis_kelamin' => $jenis_kelamin,
+                    'no_hp' => $no_hp,
+                    'email' => $email,
+                    'alamat' => $alamat,
+                    'nama_ayah' => $nama_ayah,
+                    'nama_ibu' => $nama_ibu,
+                    'no_hp_ortu' => $no_hp_ortu,
+                    'foto' => $foto
+
+                );
+                
+                $where = array(
+                    'id_santri' => $id_santri
+                );
+
+                $this->M_siswa->update_data($where, $data, 'tbl_santri');
+                echo $this->session->set_flashdata('msg', 'success-update');
+                redirect('Admin/Siswa/data_santri');
+            } else {
+                echo $this->session->set_flashdata('msg', 'warning');
+                redirect('Admin/Siswa/data_santri');
+            }
+        } else {
+
+            $id_santri           = $this->input->post('id_santri');
+            $nis           = $this->input->post('nis');
+            $password = md5($this->input->post('password'));
+            $nama_santri             = $this->input->post('nama_santri');
+            $tahun_angkatan           = $this->input->post('tahun_angkatan');
+
+            $jenis_kelamin          = $this->input->post('jenis_kelamin');
+
+
+            $no_hp                  = $this->input->post('no_hp');
+            $email                  = $this->input->post('email');
+            $alamat                  = $this->input->post('alamat');
+            $nama_ayah              = $this->input->post('nama_ayah');
+            $nama_ibu               = $this->input->post('nama_ibu');
+            $no_hp_ortu             = $this->input->post('no_hp_ortu');
+
+            $data = array(
+
+                'nis' => $nis,
+                'password' => $password,
+                'nama_santri' => $nama_santri,
+                'tahun_angkatan' => $tahun_angkatan,
+
+                'jenis_kelamin' => $jenis_kelamin,
+                'no_hp' => $no_hp,
+                'email' => $email,
+                'alamat' => $alamat,
+                'nama_ayah' => $nama_ayah,
+                'nama_ibu' => $nama_ibu,
+                'no_hp_ortu' => $no_hp_ortu
+
+            );
+
+            var_dump($data);
+            die();
+            $where = array(
+                'id_santri' => $id_santri
+            );
+
+            $this->M_siswa->update_data($where, $data, 'tbl_santri');
+            echo $this->session->set_flashdata('msg', 'success-update');
+            redirect('Admin/Siswa/data_santri');
 
         }
 

@@ -40,7 +40,22 @@ class User  extends CI_Controller
             'waktu' => $waktu
         );
 
-        $this->M_user->input_data($data, 'tbl_user');
+        $input = $this->M_user->input_data($data, 'tbl_user');
+
+
+        $curl = curl_init();
+        $token = "cooFkISKtR3vObxmFTBMVZH7PoPfO6DKyxUZyVoldEnDB45OGA475tZoUGT29q4o";
+        $phone = "083812604878";
+        $nama = "zidan";
+        $message = "terimakasih " . $nama . " telah melakukan pembayaran";
+        curl_setopt($curl, CURLOPT_URL, "https://jogja.wablas.com/api/send-message?phone=$phone&message=$message&token=$token");
+        $result = curl_exec($curl);
+        curl_close($curl);
+
+
+
+        
+
         echo $this->session->set_flashdata('msg', 'success');
         redirect('Admin/User');
     }

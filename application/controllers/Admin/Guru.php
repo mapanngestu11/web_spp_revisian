@@ -37,55 +37,59 @@ class Guru  extends CI_Controller
 
         $this->upload->initialize($config);
         if (!empty($_FILES['foto']['name'])) {
-            if ($this->upload->do_upload('foto')) {
-                $gbr = $this->upload->data();
+          $targetFile = $targetDir . basename($_FILES["fileToUpload"]["name"]);
+          $fileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+
+          
+          if ($this->upload->do_upload('foto')) {
+            $gbr = $this->upload->data();
                 //Compress Image
-                $config['image_library'] = 'gd2';
-                $config['source_image'] = './assets/admin/upload' . $gbr['file_name'];
-                $config['create_thumb'] = FALSE;
-                $config['maintain_ratio'] = FALSE;
-                $config['quality'] = '100%';
-                $config['width'] = 360;
-                $config['height'] = 360;
-                $config['new_image'] = './assets/admin/upload' . $gbr['file_name'];
-                $this->load->library('image_lib', $config);
-                $this->image_lib->resize();
+            $config['image_library'] = 'gd2';
+            $config['source_image'] = './assets/admin/upload' . $gbr['file_name'];
+            $config['create_thumb'] = FALSE;
+            $config['maintain_ratio'] = FALSE;
+            $config['quality'] = '100%';
+            $config['width'] = 360;
+            $config['height'] = 360;
+            $config['new_image'] = './assets/admin/upload' . $gbr['file_name'];
+            $this->load->library('image_lib', $config);
+            $this->image_lib->resize();
 
-                $foto = $gbr['file_name'];
+            $foto = $gbr['file_name'];
 
-                $nama_guru         = $this->input->post('nama_guru');
-                $jenis_kelamin     = $this->input->post('jenis_kelamin');
-                $mapel             = $this->input->post('mapel');
-                $no_hp              = $this->input->post('no_hp');
-                $email             = $this->input->post('email');
+            $nama_guru         = $this->input->post('nama_guru');
+            $jenis_kelamin     = $this->input->post('jenis_kelamin');
+            $mapel             = $this->input->post('mapel');
+            $no_hp              = $this->input->post('no_hp');
+            $email             = $this->input->post('email');
 
 
-                $data = array(
+            $data = array(
 
-                    'nama_guru' => $nama_guru,
-                    'jenis_kelamin' => $jenis_kelamin,
-                    'mapel' => $mapel,
-                    'no_hp' => $no_hp,
-                    'email' => $email,
-                    'foto' => $foto
+                'nama_guru' => $nama_guru,
+                'jenis_kelamin' => $jenis_kelamin,
+                'mapel' => $mapel,
+                'no_hp' => $no_hp,
+                'email' => $email,
+                'foto' => $foto
 
-                );
+            );
 
-                $this->M_guru->input_data($data, 'tbl_guru');
-                echo $this->session->set_flashdata('msg', 'success');
-                redirect('Admin/Guru');
-            } else {
-                echo $this->session->set_flashdata('msg', 'warning');
-                redirect('Admin/Guru');
-            }
+            $this->M_guru->input_data($data, 'tbl_guru');
+            echo $this->session->set_flashdata('msg', 'success');
+            redirect('Admin/Guru');
         } else {
+            echo $this->session->set_flashdata('msg', 'warning');
+            redirect('Admin/Guru');
+        }
+    } else {
 
-          echo $this->session->set_flashdata('msg', 'warning');
-          redirect('Admin/Guru');
-      }
+      echo $this->session->set_flashdata('msg', 'warning');
+      redirect('Admin/Guru');
   }
-  public function delete($id_guru)
-  {
+}
+public function delete($id_guru)
+{
     $id_guru = $this->input->post('id_guru');
     $this->M_guru->delete_data($id_guru);
     echo $this->session->set_flashdata('msg', 'success-hapus');

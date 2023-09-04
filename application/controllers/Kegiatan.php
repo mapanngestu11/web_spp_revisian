@@ -15,6 +15,6 @@ class Kegiatan extends CI_Controller {
 	{
 
 		$data['kegiatan'] = $this->M_kegiatan->tampil_data();
-		$this->load->view('front/Kegiatan',$data);
+		$this->load->view('Front/Kegiatan',$data);
 	}
 }

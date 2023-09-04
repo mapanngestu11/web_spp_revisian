@@ -15,6 +15,6 @@ class Home extends CI_Controller {
 	{
 
 		$data['kegiatan'] = $this->M_kegiatan->tampil_data_home();
-		$this->load->view('front/home',$data);
+		$this->load->view('Front/Home',$data);
 	}
 }

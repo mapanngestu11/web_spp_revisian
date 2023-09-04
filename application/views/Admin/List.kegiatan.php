@@ -145,7 +145,7 @@
                     <img class="gambar-project" src="<?php echo base_url() . "assets/"; ?>admin/upload/<?php echo $foto ?>">
                   </td>
                   <td><?php echo $nama_kegiatan ?></td>
-                    <td><?php echo $nama_lengkap ?></td>
+                  <td><?php echo $nama_lengkap ?></td>
                   <td>
                     <div class="form-button-action">
                       <a class="btn btn-link btn-primary btn-lg" data-toggle="modal" data-target="#ModalEdit<?php echo $id_kegiatan; ?>"><span class="fa fa-edit" style="color:white;"></span></a>

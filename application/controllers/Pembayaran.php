@@ -15,8 +15,10 @@ class Pembayaran extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('front/Pembayaran');
+		$this->load->view('Front/Pembayaran');
 	}
+
+
 
 	public function cek_pembayaran()
 	{

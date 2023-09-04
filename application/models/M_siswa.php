@@ -9,6 +9,13 @@ class M_siswa extends CI_Model
         return $this->db->get('tbl_santri');
     }
 
+    function tampil_data_by_nis($nis)
+    {   
+        // $this
+        $this->db->where('nis',$nis);
+        return $this->db->get('tbl_santri');
+    }
+
     function input_data($data, $table)
     {
         $this->db->insert($table, $data);

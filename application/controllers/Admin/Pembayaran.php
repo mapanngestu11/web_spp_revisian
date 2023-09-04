@@ -29,6 +29,16 @@ class Pembayaran  extends CI_Controller
         $this->load->view('Admin/List.Pembayaran.php',$data);
     }
 
+    public function pembayaran_santri()
+    {
+        $nis = $this->session->userdata('nis');
+        $data['data_kelas'] = $this->M_kelas->tampil_data();
+        $data['siswa'] = $this->M_siswa->tampil_data_by_nis($nis);
+        $data['pembayaran'] = $this->M_pembayaran->get_data_pembayaran($nis)->result();
+        
+        $this->load->view('Admin/List.data.bayar.santri.php',$data);
+    }
+
     public function add()
     {
 
