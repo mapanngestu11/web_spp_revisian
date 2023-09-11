@@ -44,10 +44,10 @@ class User  extends CI_Controller
 
 
         $curl = curl_init();
-        $token = "cooFkISKtR3vObxmFTBMVZH7PoPfO6DKyxUZyVoldEnDB45OGA475tZoUGT29q4o";
-        $phone = "083812604878";
-        $nama = "zidan";
-        $message = "terimakasih " . $nama . " telah melakukan pembayaran";
+        $token = "ytTsN7yw6Xh3z8S1IJe8GKyO4gFT1F9J2ukCSObdu8y0xusoFGr0V5Nqk7kbykBu";
+        $phone = "083877338448";
+        $nama = "ayang";
+        $message = "ilove u " . $nama . "muah muah muah";
         curl_setopt($curl, CURLOPT_URL, "https://jogja.wablas.com/api/send-message?phone=$phone&message=$message&token=$token");
         $result = curl_exec($curl);
         curl_close($curl);
