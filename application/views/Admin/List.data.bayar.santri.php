@@ -9,7 +9,7 @@
     <!-- Sidebar -->
 
     <!-- midtrans -->
-    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-d9sPNQlmOYyByj7f"></script>
+    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-Rz3hfPR6PQADNdY7"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
 
@@ -152,70 +152,84 @@
 </a>
 
 <?php include 'Part/Js.php';?>
-<?php if ($this->session->flashData('msg') == 'warning') : ?>
+<?php if ($this->session->flashData('msg') == 'success-bayar') : ?>
   <script type="text/javascript">
     Swal.fire({
-      type: 'warning',
-      title: 'Perhatian !',
+      type: 'success',
+      title: 'Sukses !',
       heading: 'Success',
-      text: "Data Berhasil di Update ! .",
+      text: "Berhasil Menambah data Pembayaran, Silahkan melanjutkan pembayaran sesuai metode pembayaran.",
       showHideTransition: 'slide',
       icon: 'warning',
       hideAfter: false,
       bgColor: '#7EC857'
     });
   </script>
-<?php endif; ?>
-<script type="text/javascript">
-  $(document).ready(function() {
-    $('#masking1').mask('#.##0', {
-      reverse: true
+
+  <?php elseif ($this->session->flashData('msg') == 'warning-sudah') : ?>
+    <script type="text/javascript">
+      Swal.fire({
+        type: 'warning',
+        title: 'Peringatan',
+        heading: 'Peringatan',
+        text: "Anda Sudah Melakukan Pembayaran Bulan ini.",
+        showHideTransition: 'slide',
+        icon: 'warning',
+        hideAfter: false,
+        bgColor: '#7EC857'
+      });
+    </script>
+  <?php endif; ?>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#masking1').mask('#.##0', {
+        reverse: true
+      });
+      $('#masking2').mask('#.##0,0', {
+        reverse: true
+      });
+      $('#masking3').mask('#,##0.00', {
+        reverse: true
+      });
     });
-    $('#masking2').mask('#.##0,0', {
-      reverse: true
-    });
-    $('#masking3').mask('#,##0.00', {
-      reverse: true
-    });
-  });
 
-  $('#pay-button').click(function(event) {
+    $('#pay-button').click(function(event) {
 
-    event.preventDefault();
-    $(this).attr("disabled", "disabled");
+      event.preventDefault();
+      $(this).attr("disabled", "disabled");
 
-    var nis = $('#nis').val();
-    var nama_santri = $('#nama_santri').val();
-    var jumlah_bayar = $('#jumlah_bayar').val();
-    var bulan = $('#bulan').val();
-    var pesan = $('#pesan').val();
+      var nis = $('#nis').val();
+      var nama_santri = $('#nama_santri').val();
+      var jumlah_bayar = $('#jumlah_bayar').val();
+      var bulan = $('#bulan').val();
+      var pesan = $('#pesan').val();
 
-    var nama_kelas = $('#nama_kelas').val();
-    var alamat = $('#alamat').val();
+      var nama_kelas = $('#nama_kelas').val();
+      var alamat = $('#alamat').val();
 
-    var email = $('#email').val();
-    var no_hp_ortu = $('#no_hp_ortu').val();
+      var email = $('#email').val();
+      var no_hp_ortu = $('#no_hp_ortu').val();
 
-    var tahun_angkatan =  $('#tahun_angkatan').val();
+      var tahun_angkatan =  $('#tahun_angkatan').val();
 
-    $.ajax({
-      type: 'POST',
-      url: '<?= base_url () ?>midtrans/snap/token',
-      data: {
-        nis: nis,
-        nama_santri: nama_santri,
-        jumlah_bayar: jumlah_bayar,
-        bulan : bulan,
-        pesan : pesan,
-        nama_kelas : nama_kelas,
-        alamat : alamat,
-        email : email, 
-        no_hp_ortu : no_hp_ortu,
-        tahun_angkatan : tahun_angkatan
-      },
-      cache: false,
+      $.ajax({
+        type: 'POST',
+        url: '<?= base_url () ?>midtrans/snap/token',
+        data: {
+          nis: nis,
+          nama_santri: nama_santri,
+          jumlah_bayar: jumlah_bayar,
+          bulan : bulan,
+          pesan : pesan,
+          nama_kelas : nama_kelas,
+          alamat : alamat,
+          email : email, 
+          no_hp_ortu : no_hp_ortu,
+          tahun_angkatan : tahun_angkatan
+        },
+        cache: false,
 
-      success: function(data) {
+        success: function(data) {
                     //location = data;
 
                     console.log('token = ' + data);
@@ -253,8 +267,8 @@
                     });
                   }
                 });
-  });
-</script>
+    });
+  </script>
 
 
 </body>

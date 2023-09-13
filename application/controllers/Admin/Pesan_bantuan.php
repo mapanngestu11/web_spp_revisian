@@ -20,6 +20,8 @@ class Pesan_bantuan  extends CI_Controller
     public function index()
     {
         $data['pesan_bantuan'] = $this->M_kontak->tampil_data();
+        $nis = $this->session->userdata('nis');
+        $data['pesan_bantuan_santri'] = $this->M_kontak->tampil_data_santri($nis);
         $this->load->view('Admin/List.pesan.bantuan.php', $data);
     }
 

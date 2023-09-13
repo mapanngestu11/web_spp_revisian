@@ -75,6 +75,30 @@ class M_pembayaran extends CI_Model{
 		$hsl = $this->db->get('tbl_pembayaran');
 		return $hsl;
 	}
+	function get_data_pembayaran_santri($nis)
+	{
+		$this->db->select('
+			a.id_pembayaran,
+			b.order_id,
+			a.nis,
+			a.pesan,
+			a.nama_santri,
+			a.nama_kelas,
+			a.bulan,
+			b.tahun_angkatan,
+			b.gross_amount,
+			b.payment_type,
+			b.status_code,
+			b.va_number,
+			b.bank,
+			b.transaction_time,
+			b.pdf_url');
+		$this->db->join('tbl_status_pembayaran as b','b.nis = a.nis','left');
+		$this->db->where('a.nis',$nis);
+		$this->db->group_by('a.bulan');
+		$hsl = $this->db->get('tbl_pembayaran as a');
+		return $hsl;
+	}
 	function cetak_laporan($bulan,$tahun)
 	{
 		// $bulan = 'August';
@@ -93,6 +117,18 @@ class M_pembayaran extends CI_Model{
 		$this->db->where('b.bulan',$bulan);
 		$hsl = $this->db->get('tbl_pembayaran as a')->result();
 		return $hsl;
+	}
+
+	public function cel_pembayaran_siswa_bulan($cek_bulan,$nis)
+	{
+		$this->db->select('a.nis');
+		$this->db->where('a.nis',$nis);
+		$this->db->where('a.bulan',$cek_bulan);
+		$this->db->where('b.status_code','200');
+		$this->db->join('tbl_status_pembayaran as b','a.nis = b.nis','left');
+		$hsl = $this->db->get('tbl_pembayaran as a')->result();
+		return $hsl;
+
 	}
 
 

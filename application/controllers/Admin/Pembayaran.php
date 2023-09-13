@@ -39,10 +39,23 @@ class Pembayaran  extends CI_Controller
         $this->load->view('Admin/List.data.bayar.santri.php',$data);
     }
 
-    public function add()
+    public function data_pembayaran_santri()
     {
+       $nis = $this->session->userdata('nis');  
+       $data['data_kelas'] = $this->M_kelas->tampil_data();
+       $data['siswa'] = $this->M_siswa->tampil_data_by_nis($nis);
+       $data['pembayaran'] = $this->M_pembayaran->get_data_pembayaran_santri($nis);
+     // echo "<pre>";
+     // print_r($data['pembayaran']->result_array());
+     // echo "</pre>";
+     // die();
+       $this->load->view('Admin/List.data.pembayaran.santri.php',$data); 
+   }
 
-        date_default_timezone_set("Asia/Jakarta");
+   public function add()
+   {
+
+    date_default_timezone_set("Asia/Jakarta");
         $config['upload_path'] = './assets/admin/upload'; //path folder
         $config['allowed_types'] = 'jpg|png|jpeg'; //type yang dapat diakses bisa anda sesuaikan
         $config['encrypt_name'] = TRUE; //nama_guru yang terupload nantinya

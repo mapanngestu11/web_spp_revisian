@@ -11,9 +11,9 @@ class Homepage  extends CI_Controller
         $this->load->helper('url');
         $this->load->library('upload');
         $this->load->model('M_login');
-        // $this->load->model('M_tagihan');
-        // $this->load->model('M_pengajuan');
-        // $this->load->model('M_instansi');
+        $this->load->model('M_kelas');
+        $this->load->model('M_siswa');
+        $this->load->model('M_pembayaran');
 
         if ($this->session->userdata('masuk') != TRUE) {
             $this->session->set_flashdata('msg', '<div class="alert alert-warning" role="alert">Login Terlebih Dahulu ! </div>');
@@ -24,9 +24,12 @@ class Homepage  extends CI_Controller
 
     public function index()
     {
-
+        $nis = $this->session->userdata('nis');  
+        $data['data_kelas'] = $this->M_kelas->tampil_data();
+        $data['siswa'] = $this->M_siswa->tampil_data_by_nis($nis);
+        $data['pembayaran'] = $this->M_pembayaran->get_data_pembayaran_santri($nis);
         // var_dump($data['pengajuan']);
         // die;
-        $this->load->view('Admin/Homepage.php');
+        $this->load->view('Admin/Homepage.php',$data);
     }
 }

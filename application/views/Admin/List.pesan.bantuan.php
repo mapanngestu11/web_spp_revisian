@@ -31,12 +31,95 @@
                   <h6 class="m-0 font-weight-bold text-primary">Data Pesan Bantuan</h6>
                   
 
+                  <?php if ($this->session->userdata('hak_akses')==='santri') : ?>
+                    <button class="btn btn-primary block" style=" float: right;" data-toggle="modal" data-target="#default" data-backdrop="static" data-keyboard="false">Ajukan Pesan</button>
+                  <?php endif;?>
+                  <!-- modal tambah -->
+                  <div class="modal fade " id="default" role="dialog" aria-hidden="true" data-backdrop="static">>
+                    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="myModalLabel1">Tambah Data Pesan</h5>
+                          <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
+                            <i data-feather="x"></i>
+                          </button>
+                        </div>
+                        <style>
+                          .form-input {
+                            padding-top: 5px;
+                          }
+                        </style>
+
+                        <div class="modal-body">
+                          <div class="modal-body">
+                            <form action="<?php echo base_url() . 'Admin/Kelas/add'; ?>" method="post">
+
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <label>Nis.</label>
+                                  <?php
+                                  $nis = $this->session->userdata('nis');
+                                  ?>
+                                  <div class="form-group form-input">
+                                    <input type="text" name="nis" class="form-control" value="<?php echo $nis;?>" readonly="">
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <label>Nama Santri</label>
+                                  <div class="form-group form-input">
+                                    <?php
+                                    $nama_santri = $this->session->userdata('nama_santri');
+                                    ?>
+                                    <input type="text" class="form-control" name="nama_santri" value="<?php echo $nama_santri;?>" readonly="">
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <label>Pesan</label>
+                                  <div class="form-group form-input">
+                                    <textarea class="form-control" name="pesan" rows="6"></textarea>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <label>Nomor Handphone</label>
+                                  <div class="form-group form-input">
+                                    <input type="number" name="no_hp" class="form-control">
+                                  </div>
+                                  <br>
+                                  <label>Upload Gambar</label>
+                                  <div class="form-group form-input">
+                                    <input type="file" name="gambar" class="form-control">
+                                  </div>
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn" data-dismiss="modal">
+                              <i class="bx bx-x d-block d-sm-none"></i>
+                              <span class="d-none d-sm-block">Batal</span>
+                            </button>
+                            <button type="submit" class="btn btn-primary ml-1">
+                              <i class="bx bx-check d-block d-sm-none"></i>
+                              <span class="d-none d-sm-block">Tambah</span>
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- end modal -->
                 </div>
-                <div class="table-responsive p-3">
+                <?php if ($this->session->userdata('hak_akses')==='santri') : ?>
+                 <div class="table-responsive p-3">
                   <table class="table align-items-center table-flush" id="dataTable">
                     <thead class="thead-light">
                       <tr>
                         <th>No</th>
+                        <th>Nis</th>
                         <th>Nama</th>
                         <th>No Hp</th>
                         <th>Isi</th>
@@ -46,6 +129,7 @@
                     <tfoot>
                       <tr>
                         <th>No</th>
+                        <th>Nis</th>
                         <th>Nama</th>
                         <th>No Hp</th>
                         <th>Isi</th>
@@ -55,16 +139,18 @@
                     <tbody>
                       <?php
                       $no = 0;
-                      foreach ($pesan_bantuan->result_array() as $row) :
+                      foreach ($pesan_bantuan_santri->result_array() as $row) :
 
                         $no++;
                         $id_kontak           = $row['id_kontak'];
-                        $nama = $row['nama'];
+                        $nis = $row['nis'];
+                        $nama = $row['nama_santri'];
                         $no_hp     = $row['no_hp'];
                         $pesan = $row['pesan'];
                         ?>
                         <tr>
                           <td><?php echo $no ?></td>
+                          <td><?php echo $nis ?></td>
                           <td><?php echo $nama ?></td>
                           <td><?php echo $no_hp ?></td>
                           <td><?php echo $pesan ?></td>
@@ -79,6 +165,57 @@
                       </tbody>
                     </table>
                   </div>
+                <?php endif;?>
+
+                <?php if($this->session->userdata('hak_akses')==='admin'):?> 
+                  <div class="table-responsive p-3">
+                    <table class="table align-items-center table-flush" id="dataTable">
+                      <thead class="thead-light">
+                        <tr>
+                          <th>No</th>
+                          <th>Nama</th>
+                          <th>No Hp</th>
+                          <th>Isi</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tfoot>
+                        <tr>
+                          <th>No</th>
+                          <th>Nama</th>
+                          <th>No Hp</th>
+                          <th>Isi</th>
+                          <th>Action</th>
+                        </tr>
+                      </tfoot>
+                      <tbody>
+                        <?php
+                        $no = 0;
+                        foreach ($pesan_bantuan->result_array() as $row) :
+
+                          $no++;
+                          $id_kontak           = $row['id_kontak'];
+                          $nama = $row['nama_santri'];
+                          $no_hp     = $row['no_hp'];
+                          $pesan = $row['pesan'];
+                          ?>
+                          <tr>
+                            <td><?php echo $no ?></td>
+                            <td><?php echo $nama ?></td>
+                            <td><?php echo $no_hp ?></td>
+                            <td><?php echo $pesan ?></td>
+                            <td>
+                              <div class="form-button-action">
+                                <a class="btn btn-link btn-primary btn-lg" data-toggle="modal" data-target="#ModalEdit<?php echo $id_kontak; ?>"><span class="fa fa-eye" style="color:white;"></span></a>
+                                <a class="btn btn-link btn-danger btn-lg" data-toggle="modal" data-target="#ModalHapus<?php echo $id_kontak; ?>"><i class=" fa fa-times" data-original-title="Edit Task" style="color:white;"></i></a>
+                              </div>
+                            </td>
+                          <?php endforeach; ?>
+
+                        </tbody>
+                      </table>
+                    </div>
+                  <?php endif;?>
                 </div>
               </div>
 
@@ -95,7 +232,7 @@
         <!-- modal hapus -->
         <?php foreach ($pesan_bantuan->result_array() as $row) :
           $id_kontak = $row['id_kontak'];
-          $nama = $row['nama'];
+          $nama = $row['nama_santri'];
           ?>
           <div class="modal fade" id="ModalHapus<?php echo $id_kontak; ?>" tabindex="-1" role="dialog" aria-labelledby="">
             <div class="modal-dialog" role="document">
@@ -129,7 +266,7 @@
         <!-- modal edit -->
         <?php foreach ($pesan_bantuan->result_array() as $row) :
           $id_kontak = $row['id_kontak'];
-          $nama = $row['nama'];
+          $nama = $row['nama_santri'];
           $no_hp    = $row['no_hp'];
 
           ?>
@@ -155,7 +292,7 @@
                         <div class="col-md-6">
                           <label>Nama Lengkap</label>
                           <div class="form-group form-input">
-                            <input type="text" name="nama" value="<?php echo $row['nama']; ?>" class="form-control" readonly>
+                            <input type="text" name="nama" value="<?php echo $row['nama_santri']; ?>" class="form-control" readonly>
                           </div>
                         </div>
                         <div class="col-md-6">

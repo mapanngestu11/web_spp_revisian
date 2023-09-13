@@ -97,13 +97,13 @@
     </ul>
     <?php elseif($this->session->userdata('hak_akses')==='santri'):?> 
      <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo base_url('Admin/Homepage/') ?>">
 
         <div class="sidebar-brand-text mx-3">SANTRI</div>
       </a>
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="<?php echo base_url('Admin/Homepage/') ?>">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
         </li>
@@ -136,9 +136,19 @@
             <i class="fas fa-fw fa-file"></i>
             <span>Pembayaran SPP </span>
           </a>
-          <a class="nav-link" href="<?php echo base_url('Admin/Pembayaran/') ?><?php echo $nis;?>">
+          <a class="nav-link" href="<?php echo base_url('Admin/Pembayaran/data_pembayaran_santri') ?>">
             <i class="fas fa-fw fa-folder"></i>
             <span>Data Pembayaran SPP </span>
+          </a>
+        </li>
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading">
+          Pesan Bantuan
+        </div>
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo base_url('Admin/Pesan_bantuan/') ?>">
+            <i class="fas fa-fw fa-envelope"></i>
+            <span>Pesan Bantuan</span>
           </a>
         </li>
         <hr class="sidebar-divider">

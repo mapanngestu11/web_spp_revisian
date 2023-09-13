@@ -25,7 +25,7 @@ class Snap extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$params = array('server_key' => 'SB-Mid-server-b7RcyfpoyYsstWMRzTNyF4uj', 'production' => false);
+		$params = array('server_key' => 'SB-Mid-server-N9EiBhn0Cm5Ds-Y8ea02I3E7', 'production' => false);
 		$this->load->library('midtrans');
 		$this->load->Model('M_pembayaran');
 		$this->load->Model('M_status_pembayaran');
@@ -151,26 +151,37 @@ class Snap extends CI_Controller {
 	public function finish()
 	{
 		$result = json_decode($this->input->post('result_data'),true);
-		echo "<pre>";
-		var_dump($result);
-		echo "</pre>";
-		die();
+		// echo "<pre>";
+		// var_dump($result);
+		// echo "</pre>";
+		// die();
 		$nama_santri = $this->input->post('nama_santri');
-		$kelas = $this->input->post('kelas');
-		$nisn = $this->input->post('nisn');
+		$nama_kelas = $this->input->post('nama_kelas');
+		$tahun_angkatan = $this->input->post('tahun_angkatan');
+		$nis = $this->input->post('nis');
 		$bulan =  date('F');
 		$tanggal_upload =  date('Y-m-d h:i:s');
 
+		$bulan = $this->input->post('bulan');
 
+
+		$cek_bulan = date('F',strtotime($bulan));
+
+		$cek_pembayaran_bulan = $this->M_pembayaran->cel_pembayaran_siswa_bulan($cek_bulan,$nis);
+		if ($cek_pembayaran_bulan) {
+			
+			echo $this->session->set_flashdata('msg', 'warning-sudah');
+			redirect('Admin/Pembayaran/pembayaran_santri/');
+		}
 		$data  = [
 
 			'order_id' => $result['order_id'],	
-			'nisn' => $nisn,
+			'nis' => $nis,
 			'nama_santri' => $nama_santri,
-			'kelas' => $kelas,
+			'nama_kelas' => $nama_kelas,
 			'bulan' => $bulan,
 			'tanggal_upload' => $tanggal_upload,
-
+			'tahun_angkatan' => $tahun_angkatan,
 			'gross_amount' => $result['gross_amount'],
 			'payment_type' => $result['payment_type'],
 			'transaction_time' => $result['transaction_time'],
@@ -181,10 +192,8 @@ class Snap extends CI_Controller {
 		];
 
 		$simpan = $this->M_status_pembayaran->input_data($data,'tbl_status_pembayaran');
-		if ($simpan == true) {
-			echo "berhasil";
-		}else{
-			echo "gagal";
-		}
+
+		echo $this->session->set_flashdata('msg', 'success-bayar');
+		redirect('Admin/Pembayaran/pembayaran_santri/');
 	}
 }

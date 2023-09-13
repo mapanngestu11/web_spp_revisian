@@ -8,6 +8,11 @@ class M_kontak extends CI_Model
     {
         return $this->db->get('tbl_kontak');
     }
+    function tampil_data_santri($nis)
+    {
+        $this->db->where('nis',$nis);
+        return $this->db->get('tbl_kontak');
+    }
 
     function input_data($data, $table)
     {
