@@ -18,7 +18,63 @@
 <body>
 	
 	<!-- Header -->
-	<?php include 'Part/Header.php';?>
+	<header class="header">
+		<!-- Header Inner -->
+
+		<style type="text/css">
+			.logo_instansi{
+				margin-top: 4px;
+				width: 117px;
+				height: 86px;
+				margin-left: 35px;
+			}
+			.instansi{
+				font-family: "Rubik", sans-serif !important;
+				padding-bottom: 20px;
+			}
+		</style>
+		<div class="header-inner overlay">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-1 col-md-1 col-12">
+						<img class="logo_instansi" src="<?php echo base_url()."assets/Front/images/"; ?>icon.png">
+					</div>
+					<div class="col-lg-5 col-md-3 col-12">
+						<!-- Logo -->
+						<div class="logo">
+
+							<H3 class="instansi" style="color: #ae1d23"><u>Rumah Qur'an Al-Mubarok</u></H3>
+						</div>
+						<!--/ End Logo -->
+						<div class="mobile-menu"></div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-12">
+						<div class="menu-bar">
+							<nav class="navbar navbar-default">
+								<div class="navbar-collapse">
+									<!-- Main Menu -->
+									<ul id="nav" class="nav menu navbar-nav">
+										<li class="active"><a href="<?php echo base_url('Home/') ?>"><i class="fa fa-home"></i>Home</a></li>
+										<li><a href="#"><i class="fa fa-users"></i>Guru</a> 
+											<ul class="dropdown">
+												<li><a href="<?php echo base_url('Guru/') ?>">Detail Pengajar</a></li>
+											</ul>
+										</li>
+										<!-- <li><a href="<?php echo base_url('Pembayaran/') ?>"><i class="fa fa-clone"></i>Info Pembayaran</a></li> -->
+										<li><a href="<?php echo base_url('Kegiatan/') ?>"><i class="fa fa-bullhorn"></i>Info Kegiatan</a></li>
+										<li><a href="<?php echo base_url('Kontak/') ?>"><i class="fa fa-address-book"></i>Kontak</a> </li>
+									</ul>
+									<!-- End Main Menu -->
+								</div> 
+							</nav>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--/ End Header Inner -->
+	</header>
 	<!--/ End Header -->
 
 	<!-- Slider Area -->
@@ -36,8 +92,8 @@
 								<p class="slider-text"> Rumah Qur'an Al-Mubarok merupakan sebuah lembaga pendidikan Al-Qur'an Sebagai sarana pendidikan dalam belajar membaca dan menghafal Al-Qur'an dengan mengembangkan konsep nilai-nilai Al-Qur'an dan As-Sunnah dengan menekankan kurikulum karakter iman agar bisa terbentuknya generasi Qur’ani yang berilmu dan beradab calon pemimpin bangsa. </p>
 								<!-- Button -->
 								<div class="button">
-									<a href="about.html" class="btn white">Informasi Lebih Lanjut</a>
-									<a href="courses.html" class="btn white primary">Lihat Data Santri</a>
+									<a href="<?php echo base_url('Kegiatan/') ?>" class="btn white">Informasi Kegiatan</a>
+									<a href="<?php echo base_url('Login/') ?>" class="btn white primary">Login</a>
 								</div>
 								<!--/ End Button -->
 							</div>
@@ -65,6 +121,13 @@
 			</div>
 			<div class="row">
 
+				<style type="text/css">
+					.gambar_kegiatan{
+						width: 1200px !important;
+						height: 160px !important; 
+					}
+				</style>
+
 				<?php foreach ($kegiatan->result_array() as $data_kegiatan) : 
 					$nama_kegiatan  = $data_kegiatan['nama_kegiatan'];
 					$foto         = $data_kegiatan['foto'];
@@ -76,7 +139,7 @@
 						<div class="single-course">
 							<!-- Course Head -->
 							<div class="course-head overlay">
-								<img src="<?php echo base_url() . "assets/"; ?>admin/upload/<?php echo $foto ?>" alt="#">
+								<img class="gambar_kegiatan" src="<?php echo base_url() . "assets/"; ?>admin/upload/<?php echo $foto ?>" alt="#">
 								<!-- <a href="course-single.html" class="btn white primary">Register Now</a> -->
 							</div>
 							<!-- Course Body -->
@@ -113,37 +176,7 @@
 	</section>
 	<!--/ End Courses -->	
 
-	<!-- Call To Action -->
-	<section class="cta">
-		<div class="cta-inner overlay section" style="background-image:url('images/cta-bg.jpg')" data-stellar-background-ratio="0.5">
-			<div class="container">
-				<div class="row">					
-					<div class="col-lg-8 col-md-8 col-12">
-						<div class="text-content">
-							<h2>We <span>Focus on</span> Brands, Products & Campaigns</h2>
-							<p>facilisis ultricies tortor, nec sollicitudin lorem sagittis vitae. Curabitur rhoncus commodo rutrum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam nec lacus pulvinar, laoreet dolor quis, pellentesque ante. Cras nulla orci, pharetra at dictum consequat, pretium pretium nulla</p>
-							<!-- CTA Button -->
-							<div class="button">
-								<a class="btn white" href="contact.html">Join With Now</a>
-								<a class="btn white primary" href="courses.html">View Courses</a>
-							</div>
-							<!--/ End CTA Button -->
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-4 col-12">
-						<!-- Cta Image -->
-						<div class="cta-image">
-							<img src="images/girl-1.png" alt="#">
-						</div>
-						<!--/ End Cta Image -->
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!--/ End Call To Action -->
-	<!-- Faqs -->
-	
+
 	<!--/ End Blogs -->
 
 	<!-- Footer -->
