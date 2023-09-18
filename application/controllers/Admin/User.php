@@ -77,6 +77,7 @@ class User  extends CI_Controller
         $username = $this->input->post('username');
         $password = md5($this->input->post('password'));
         $waktu =  date('Y-m-d h:i:s');
+        
 
         $data = array(
             'nama_lengkap' => $nama_lengkap,

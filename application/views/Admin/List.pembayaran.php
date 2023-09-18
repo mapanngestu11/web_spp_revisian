@@ -136,9 +136,7 @@
                             </div>
 
                             <hr>
-                            <div>
 
-                            </div>
                           </div>
                         </div>
                         <div class="modal-footer">
@@ -161,12 +159,12 @@
                 <table class="table align-items-center table-flush" id="dataTable">
                   <thead class="thead-light">
                     <tr>
-                      <th>No</th>
+                      <th style="width: 10px">No</th>
                       <th>Nis</th>
                       <th>Nama Lengkap</th>
                       <th>Kelas</th>
                       <th>Bulan</th>
-                      <th>Tanggal Upload</th>
+                      <!-- <th>Tanggal Upload</th> -->
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -177,7 +175,7 @@
                       <th>Nama Lengkap</th>
                       <th>Kelas</th>
                       <th>Bulan</th>
-                      <th>Tanggal Upload</th>
+                      <!-- <th>Tanggal Upload</th> -->
                       <th>Action</th>
                     </tr>
                   </tfoot>
@@ -201,10 +199,11 @@
                         <td><?php echo $nama_santri;?></td>
                         <td><?php echo $nama_kelas;?></td>
                         <td><?php echo $bulan;?></td>
-                        <td><?php echo $tanggal_upload;?></td>
+                        <!-- <td><?php echo $tanggal_upload;?></td> -->
                         <td>
                           <div class="form-button-action">
-                            <a class="btn btn-link btn-primary btn-lg" data-toggle="modal" data-target="#ModalEdit<?php echo $id_pembayaran; ?>"><span class="fa fa-edit" style="color:white;"></span></a>
+
+                            <a class="btn btn-link btn-primary btn-lg" href="<?php echo base_url('Admin/Pembayaran/detail_bayar/') ?><?php echo $id_pembayaran;?>"><span class="fa fa-edit" style="color:white;"></span></a>
                             <a class="btn btn-link btn-danger btn-lg" data-toggle="modal" data-target="#ModalHapus<?php echo $id_pembayaran; ?>"><i class=" fa fa-times" data-original-title="Edit Task" style="color:white;"></i></a>
                           </div>
                         </td>
@@ -263,7 +262,6 @@
 
 
 
-      <!-- end modal -->
       <!-- Footer -->
       <?php include 'Part/Footer.php';?>
       <!-- Footer -->
@@ -277,7 +275,7 @@
 
 
   <!-- modal -->
-  <
+  
   <!-- end modal -->
 
 
@@ -286,6 +284,7 @@
   <!-- Page level custom scripts -->
   <script>
     $(document).ready(function () {
+
       $('#dataTable').DataTable(); // ID From dataTable 
       $('#dataTableHover').DataTable(); // ID From dataTable with Hover
     });

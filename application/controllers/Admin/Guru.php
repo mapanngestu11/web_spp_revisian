@@ -97,7 +97,7 @@ public function delete($id_guru)
 }
 public function update($id_guru)
 {
-   date_default_timezone_set("Asia/Jakarta");
+ date_default_timezone_set("Asia/Jakarta");
         $config['upload_path'] = './assets/admin/upload'; //path folder
         $config['allowed_types'] = 'jpg|png|jpeg'; //type yang dapat diakses bisa anda sesuaikan
         $config['encrypt_name'] = TRUE; //nama_guru yang terupload nantinya

@@ -29,6 +29,40 @@ class Pembayaran  extends CI_Controller
         $this->load->view('Admin/List.Pembayaran.php',$data);
     }
 
+    public function detail_bayar($id_pembayaran)
+    {   
+
+
+        $data['pembayaran'] = $this->M_pembayaran->cek_pembayaran_detail($id_pembayaran);
+        $this->load->view('Admin/List.detail.bayar.santri.php', $data);
+    }
+
+    public function update_detail()
+    {
+
+        $id_status_pembayaran = $this->input->post('id_status_pembayaran');
+        $status_code = $this->input->post('status_code');
+        $payment_type = $this->input->post('payment_type');
+        $transaction_time = date('Y-m-d h:i:s');
+        $tahun = date('Y');
+
+        $data = array(
+            'status_code' => $status_code,
+            'payment_type' => $payment_type,
+            'transaction_time' => $transaction_time,
+            'tahun' => $tahun,
+
+        );
+
+        $where = array(
+            'id_status_pembayaran' => $id_status_pembayaran
+        );
+
+        $this->M_status_pembayaran->update_data($where, $data, 'tbl_status_pembayaran');
+        echo $this->session->set_flashdata('msg', 'info-update');
+        redirect('Admin/Pembayaran');
+    }
+
     public function pembayaran_santri()
     {
         $nis = $this->session->userdata('nis');
@@ -41,19 +75,19 @@ class Pembayaran  extends CI_Controller
 
     public function data_pembayaran_santri()
     {
-       $nis = $this->session->userdata('nis');  
-       $data['data_kelas'] = $this->M_kelas->tampil_data();
-       $data['siswa'] = $this->M_siswa->tampil_data_by_nis($nis);
-       $data['pembayaran'] = $this->M_pembayaran->get_data_pembayaran_santri($nis);
+     $nis = $this->session->userdata('nis');  
+     $data['data_kelas'] = $this->M_kelas->tampil_data();
+     $data['siswa'] = $this->M_siswa->tampil_data_by_nis($nis);
+     $data['pembayaran'] = $this->M_pembayaran->get_data_pembayaran_santri($nis);
      // echo "<pre>";
      // print_r($data['pembayaran']->result_array());
      // echo "</pre>";
      // die();
-       $this->load->view('Admin/List.data.pembayaran.santri.php',$data); 
-   }
+     $this->load->view('Admin/List.data.pembayaran.santri.php',$data); 
+ }
 
-   public function add()
-   {
+ public function add()
+ {
 
     date_default_timezone_set("Asia/Jakarta");
         $config['upload_path'] = './assets/admin/upload'; //path folder

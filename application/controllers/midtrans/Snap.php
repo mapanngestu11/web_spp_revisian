@@ -167,7 +167,7 @@ class Snap extends CI_Controller {
 
 		$cek_bulan = date('F',strtotime($bulan));
 
-		$cek_pembayaran_bulan = $this->M_pembayaran->cel_pembayaran_siswa_bulan($cek_bulan,$nis);
+		$cek_pembayaran_bulan = $this->M_pembayaran->cek_pembayaran_siswa_bulan($cek_bulan,$nis);
 		if ($cek_pembayaran_bulan) {
 			
 			echo $this->session->set_flashdata('msg', 'warning-sudah');

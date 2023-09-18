@@ -17,6 +17,13 @@ class M_siswa extends CI_Model
         return $this->db->get('tbl_santri');
     }
 
+
+    public function jumlah_data_santri()
+    {
+
+        return $this->db->count_all('tbl_santri');
+    } 
+
     function input_data($data, $table)
     {
         $this->db->insert($table, $data);

@@ -22,6 +22,18 @@ class M_status_pembayaran extends CI_Model{
 
 	}
 
+	public function jumlah_data()
+	{
+
+		return $this->db->count_all('tbl_status_pembayaran');
+	} 
+
+	function update_data($where, $data, $table)
+	{
+		$this->db->where($where);
+		$this->db->update($table, $data);
+	}
+
 	function cek_pembayaran ($nis,$bulan) {
 		$this->db->select('a.transaction_time as transaction_time');
 		$this->db->where('nis',$nis);

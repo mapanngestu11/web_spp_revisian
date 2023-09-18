@@ -21,6 +21,12 @@ class M_pembayaran extends CI_Model{
 		return $hsl;
 	}
 
+	public function jumlah_data()
+	{
+
+		return $this->db->count_all('tbl_pembayaran');
+	} 
+
 	function hari_ini($hari_ini){
 
 		$this->db->select('*');
@@ -99,6 +105,30 @@ class M_pembayaran extends CI_Model{
 		$hsl = $this->db->get('tbl_pembayaran as a');
 		return $hsl;
 	}
+	function get_data_pembayaran_all()
+	{
+		$this->db->select('
+			a.id_pembayaran,
+			b.order_id,
+			a.nis,
+			a.pesan,
+			a.nama_santri,
+			a.nama_kelas,
+			a.bulan,
+			b.tahun_angkatan,
+			b.gross_amount,
+			b.payment_type,
+			b.status_code,
+			b.va_number,
+			b.bank,
+			b.transaction_time,
+			b.pdf_url');
+		$this->db->join('tbl_status_pembayaran as b','b.nis = a.nis','left');
+		
+		$this->db->group_by('a.bulan');
+		$hsl = $this->db->get('tbl_pembayaran as a');
+		return $hsl;
+	}
 	function cetak_laporan($bulan,$tahun)
 	{
 		// $bulan = 'August';
@@ -119,7 +149,7 @@ class M_pembayaran extends CI_Model{
 		return $hsl;
 	}
 
-	public function cel_pembayaran_siswa_bulan($cek_bulan,$nis)
+	public function cek_pembayaran_siswa_bulan($cek_bulan,$nis)
 	{
 		$this->db->select('a.nis');
 		$this->db->where('a.nis',$nis);
@@ -131,5 +161,40 @@ class M_pembayaran extends CI_Model{
 
 	}
 
+	public function cek_pembayaran_detail($id_pembayaran)
+	{
+		$this->db->select('
+			b.nis,
+			b.nama_santri,
+			a.nama_kelas,
+			a.jumlah_bayar,
+			a.pesan,
+
+			a.bulan,
+			a.tanggal_upload,
+			c.gross_amount,
+			c.payment_type,
+			c.transaction_time,
+
+			c.id_status_pembayaran,
+			c.bank,
+			c.va_number,
+			c.pdf_url,
+			c.status_code
+
+
+
+			');
+		$this->db->join('tbl_santri as b','a.nis = b.nis','left');
+		$this->db->join('tbl_status_pembayaran as c', 'c.nis = a.nis', 'left');
+		$this->db->where('a.id_pembayaran',$id_pembayaran);
+		$this->db->group_by('a.nama_santri');
+		$this->db->order_by('c.id_status_pembayaran', 'DESC');
+
+
+		$hsl = $this->db->get('tbl_pembayaran as a');
+		return $hsl;
+
+	}
 
 }
