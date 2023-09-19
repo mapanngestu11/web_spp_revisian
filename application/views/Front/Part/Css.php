@@ -1,5 +1,5 @@
 	
-<title>Rumah Tahfidz Qur'an Al Mubarok</title>
+<title>Rumah Qur'an Al-Mubarok</title>
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="<?php echo base_url()."assets/Front/images/icon.png"; ?>">
 

@@ -89,8 +89,8 @@
 				<div class="col-lg-6 col-md-6 col-12">
 					<ul class="bread-list">
 						<li><a href="index.html">Home<i class="fa fa-angle-right"></i></a></li>
-						<li><a href="#">Pages<i class="fa fa-angle-right"></i></a></li>
-						<li class="active"><a href="about.html">About</a></li>
+
+						<li class="active"><a href="about.html">Daftar Guru</a></li>
 					</ul>
 				</div>
 			</div>

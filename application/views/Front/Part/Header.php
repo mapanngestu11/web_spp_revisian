@@ -35,11 +35,7 @@
 									<!-- Main Menu -->
 									<ul id="nav" class="nav menu navbar-nav">
 										<li class="active"><a href="<?php echo base_url('Home/') ?>"><i class="fa fa-home"></i>Home</a></li>
-										<li><a href="#"><i class="fa fa-users"></i>Guru</a> 
-											<ul class="dropdown">
-												<li><a href="<?php echo base_url('Guru/') ?>">Detail Pengajar</a></li>
-											</ul>
-										</li>
+										<li><a href="<?php echo base_url('Guru/') ?>">Guru</a></li>
 										<!-- <li><a href="<?php echo base_url('Pembayaran/') ?>"><i class="fa fa-clone"></i>Info Pembayaran</a></li> -->
 										<li><a href="<?php echo base_url('Kegiatan/') ?>"><i class="fa fa-bullhorn"></i>Info Kegiatan</a></li>
 										<li><a href="<?php echo base_url('Kontak/') ?>"><i class="fa fa-address-book"></i>Kontak</a> </li>

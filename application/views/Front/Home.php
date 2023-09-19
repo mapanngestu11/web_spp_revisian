@@ -88,7 +88,7 @@
 						<div class="col-lg-7 col-md-10 col-12">
 							<!-- Slider Content -->
 							<div class="slider-content">
-								<h1 class="slider-title"><b> Rumah Qur'an Al-Mubarok</b></h1>
+								<h1 class="slider-title"><b> Rumah Qur'an Al-Mubarok </b></h1>
 								<p class="slider-text"> Rumah Qur'an Al-Mubarok merupakan sebuah lembaga pendidikan Al-Qur'an Sebagai sarana pendidikan dalam belajar membaca dan menghafal Al-Qur'an dengan mengembangkan konsep nilai-nilai Al-Qur'an dan As-Sunnah dengan menekankan kurikulum karakter iman agar bisa terbentuknya generasi Qur’ani yang berilmu dan beradab calon pemimpin bangsa. </p>
 								<!-- Button -->
 								<div class="button">
@@ -113,7 +113,7 @@
 			<div class="row">
 				<div class="col-lg-6 offset-lg-3 col-12">
 					<div class="section-title bg">
-						<h2>Kegiatan Rumah qur'an Al-Mubarok</h2>
+						<h2>Kegiatan Rumah Qur'an Al-Mubarok</h2>
 						
 						<div class="icon"><i class="fa fa-clone"></i></div>
 					</div>

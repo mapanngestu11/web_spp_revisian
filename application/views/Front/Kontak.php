@@ -83,7 +83,7 @@
 				<div class="col-lg-6 col-md-6 col-12">
 					<ul class="bread-list">
 						<li><a href="index.html">Home<i class="fa fa-angle-right"></i></a></li>
-						<li class="active"><a href="contact.html">contact</a></li>
+						<li class="active"><a href="contact.html">Kontak</a></li>
 					</ul>
 				</div>
 			</div>
@@ -150,10 +150,14 @@
 						</div>
 						<!-- Contact-Info -->
 						<div class="contact-info">
-							<div class="icon"><i class="fa fa-envelope"></i></div>
+							<div class="icon"><i class="fa fa-address-book"></i></div>
 							<h3>Kontak</h3>
-							<p><a href="mailto:info@example.com">rumahquranalmubarok@gmail.com</a></p>
-							<p>081807953866</p>
+							<li><i class="fa fa-phone"></i> Phone: 082311112250 </li>
+							<li><i class="fa fa-instagram"></i> Instagram: rumahquran.almubarok </li>
+							<li><i class="fa fa-envelope"></i> Email: <a href="mailto:info@youremail.com">rumahquran.almubarok12@gmail.com</a></li>
+							<li><i class="fa fa-youtube"></i> Youtube: Rumah Qur'an Al-Mubarok </li>
+							<li><i class="fa fa-map-o"></i> Address: Kampung Tahfidz, Kampung Alang Kecil, Ds. Kebon Cau, Teluk Naga, Kab.Tangerang
+							</li>
 						</div>
 						<!-- Contact-Info -->
 					</div>
