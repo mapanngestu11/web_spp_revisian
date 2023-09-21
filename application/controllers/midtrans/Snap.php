@@ -121,9 +121,11 @@ class Snap extends CI_Controller {
 			'expiry'             => $custom_expiry
 		);
 
+		$get_order_id = $transaction_details['order_id'];
 
 		$data = array(
 			'nis' => $nis,
+			'order_id' => $get_order_id,
 			'nama_santri' => $nama_santri,
 			'nama_kelas' => $nama_kelas,
 			'no_hp_ortu' => $no_hp_ortu,
@@ -166,7 +168,7 @@ class Snap extends CI_Controller {
 
 
 		$cek_bulan = date('F',strtotime($bulan));
-
+		$tahun  =date('Y');
 		$cek_pembayaran_bulan = $this->M_pembayaran->cek_pembayaran_siswa_bulan($cek_bulan,$nis);
 		if ($cek_pembayaran_bulan) {
 			
@@ -179,7 +181,8 @@ class Snap extends CI_Controller {
 			'nis' => $nis,
 			'nama_santri' => $nama_santri,
 			'nama_kelas' => $nama_kelas,
-			'bulan' => $bulan,
+			'bulan' => $cek_bulan,
+			'tahun' => $tahun,
 			'tanggal_upload' => $tanggal_upload,
 			'tahun_angkatan' => $tahun_angkatan,
 			'gross_amount' => $result['gross_amount'],

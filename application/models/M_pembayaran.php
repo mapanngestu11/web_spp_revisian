@@ -15,9 +15,18 @@ class M_pembayaran extends CI_Model{
 	}
 	
 	function tampil_data(){
-		$this->db->select('*');
-		$this->db->group_by('tbl_pembayaran.nama_santri');
-		$hsl = $this->db->get('tbl_pembayaran');
+		$this->db->select('
+			a.id_pembayaran,
+			a.nis,
+			a.nama_santri,
+			a.nama_kelas,
+			a.bulan,
+			a.tanggal_upload,
+			b.order_id,
+			b.status_code');
+		$this->db->group_by('b.order_id');
+		$this->db->join('tbl_status_pembayaran as b','b.nis = a.nis','left');
+		$hsl = $this->db->get('tbl_pembayaran as a');
 		return $hsl;
 	}
 
@@ -77,7 +86,7 @@ class M_pembayaran extends CI_Model{
 	function laporan_data()
 	{
 		$this->db->select('*');
-		$this->db->group_by('tbl_pembayaran.nama_santri');
+		$this->db->group_by('tbl_pembayaran.order_id');
 		$hsl = $this->db->get('tbl_pembayaran');
 		return $hsl;
 	}
@@ -101,7 +110,7 @@ class M_pembayaran extends CI_Model{
 			b.pdf_url');
 		$this->db->join('tbl_status_pembayaran as b','b.nis = a.nis','left');
 		$this->db->where('a.nis',$nis);
-		$this->db->group_by('a.bulan');
+		$this->db->group_by('b.order_id');
 		$hsl = $this->db->get('tbl_pembayaran as a');
 		return $hsl;
 	}
@@ -125,7 +134,7 @@ class M_pembayaran extends CI_Model{
 			b.pdf_url');
 		$this->db->join('tbl_status_pembayaran as b','b.nis = a.nis','left');
 		
-		$this->db->group_by('a.bulan');
+		$this->db->group_by('b.order_id');
 		$hsl = $this->db->get('tbl_pembayaran as a');
 		return $hsl;
 	}

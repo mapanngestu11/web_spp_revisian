@@ -40,7 +40,7 @@ class Login extends CI_Controller {
             // var_dump($xcadmin['hak_akses']);
             // die;
 
-			if ($xcadmin['hak_akses'] == 'admin') {
+			if ($xcadmin['hak_akses'] == 'admin' || $xcadmin['hak_akses'] == 'kepsek') {
 				$this->session->set_userdata('akses', 'admin');
 				$id_user = $xcadmin['id_user'];
 				$nama_lengkap = $xcadmin['nama_lengkap'];

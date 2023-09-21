@@ -59,7 +59,7 @@
                         <th>No</th>
                         <th>Nis</th>
                         <th>Nama Santri</th>
-                        <th>Hak Akses</th>
+                        <th>Bulan</th>
 
                       </tr>
                     </thead>

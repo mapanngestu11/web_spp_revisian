@@ -164,7 +164,7 @@
                       <th>Nama Lengkap</th>
                       <th>Kelas</th>
                       <th>Bulan</th>
-                      <!-- <th>Tanggal Upload</th> -->
+                      <th>Status</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -175,7 +175,7 @@
                       <th>Nama Lengkap</th>
                       <th>Kelas</th>
                       <th>Bulan</th>
-                      <!-- <th>Tanggal Upload</th> -->
+                      <th>Status</th>
                       <th>Action</th>
                     </tr>
                   </tfoot>
@@ -191,6 +191,7 @@
                       $nama_kelas      = $row['nama_kelas'];
                       $bulan      = $row['bulan'];
                       $tanggal_upload      = $row['tanggal_upload'];
+                      $status_code  = $row['status_code'];
 
                       ?>
                       <tr>
@@ -199,108 +200,117 @@
                         <td><?php echo $nama_santri;?></td>
                         <td><?php echo $nama_kelas;?></td>
                         <td><?php echo $bulan;?></td>
-                        <!-- <td><?php echo $tanggal_upload;?></td> -->
                         <td>
-                          <div class="form-button-action">
+                          <?php if ($status_code == '201') { ?>
+                            <span class="badge badge-warning">Pending</span>
+                          <?php }elseif ($status_code == '200') { ?>
+                           <span class="badge badge-success">Sukses</span>
+                         <?php }elseif ($status_code == '202'){ ?>
+                           <span class="badge badge-danger">Gagal</span>
+                         <?php }?>
+                       </td>
 
-                            <a class="btn btn-link btn-primary btn-lg" href="<?php echo base_url('Admin/Pembayaran/detail_bayar/') ?><?php echo $id_pembayaran;?>"><span class="fa fa-edit" style="color:white;"></span></a>
-                            <a class="btn btn-link btn-danger btn-lg" data-toggle="modal" data-target="#ModalHapus<?php echo $id_pembayaran; ?>"><i class=" fa fa-times" data-original-title="Edit Task" style="color:white;"></i></a>
-                          </div>
-                        </td>
-                      <?php endforeach; ?>
+                       <td>
+                        <div class="form-button-action">
 
-                    </tbody>
-                  </table>
-                </div>
+                          <a class="btn btn-link btn-primary btn-lg" href="<?php echo base_url('Admin/Pembayaran/detail_bayar/') ?><?php echo $id_pembayaran;?>"><span class="fa fa-edit" style="color:white;"></span></a>
+                          <a class="btn btn-link btn-danger btn-lg" data-toggle="modal" data-target="#ModalHapus<?php echo $id_pembayaran; ?>"><i class=" fa fa-times" data-original-title="Edit Task" style="color:white;"></i></a>
+                        </div>
+                      </td>
+                    <?php endforeach; ?>
+
+                  </tbody>
+                </table>
               </div>
             </div>
-
           </div>
-          <!--Row-->
-
-          <!-- Documentation Link -->
-
-
 
         </div>
-        <!---Container Fluid-->
+        <!--Row-->
+
+        <!-- Documentation Link -->
+
+
+
       </div>
+      <!---Container Fluid-->
+    </div>
 
 
-      <!-- modal hapus -->
-      <?php foreach ($pembayaran->result_array() as $row) :
-        $id_pembayaran = $row['id_pembayaran'];
-        $nama_santri = $row['nama_santri'];
-        ?>
-        <div class="modal fade" id="ModalHapus<?php echo $id_pembayaran; ?>" tabindex="-1" role="dialog" aria-labelledby="">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <!--    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><span class="fa fa-close"></span></span></button> -->
-                <h4 class="modal-title" id="myModalLabel">Hapus Data Santri</h4>
-              </div>
-              <form class="form-horizontal" action="<?php echo base_url() . 'Admin/Pembayaran/delete' ?>" method="post">
-                <div class="modal-body">
-                  <input type="hidden" name="id_pembayaran" value="<?php echo $id_pembayaran; ?>" />
-
-                  <p>Apakah Anda yakin mau menghapus <b><?php echo $nama_santri; ?></b> ?</p>
-
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn" data-dismiss="modal">
-                    <i class="bx bx-x d-block d-sm-none"></i>
-                    <span class="d-none d-sm-block">Batal</span>
-                  </button>
-                  <button type="submit" class="btn btn-primary btn-flat" id="simpan">Hapus</button>
-                </div>
-              </form>
+    <!-- modal hapus -->
+    <?php foreach ($pembayaran->result_array() as $row) :
+      $id_pembayaran = $row['id_pembayaran'];
+      $nama_santri = $row['nama_santri'];
+      ?>
+      <div class="modal fade" id="ModalHapus<?php echo $id_pembayaran; ?>" tabindex="-1" role="dialog" aria-labelledby="">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <!--    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><span class="fa fa-close"></span></span></button> -->
+              <h4 class="modal-title" id="myModalLabel">Hapus Data Santri</h4>
             </div>
+            <form class="form-horizontal" action="<?php echo base_url() . 'Admin/Pembayaran/delete' ?>" method="post">
+              <div class="modal-body">
+                <input type="hidden" name="id_pembayaran" value="<?php echo $id_pembayaran; ?>" />
+
+                <p>Apakah Anda yakin mau menghapus <b><?php echo $nama_santri; ?></b> ?</p>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn" data-dismiss="modal">
+                  <i class="bx bx-x d-block d-sm-none"></i>
+                  <span class="d-none d-sm-block">Batal</span>
+                </button>
+                <button type="submit" class="btn btn-primary btn-flat" id="simpan">Hapus</button>
+              </div>
+            </form>
           </div>
         </div>
-      <?php endforeach; ?>
-      <!-- end modal hapus -->
+      </div>
+    <?php endforeach; ?>
+    <!-- end modal hapus -->
 
 
 
-      <!-- Footer -->
-      <?php include 'Part/Footer.php';?>
-      <!-- Footer -->
-    </div>
+    <!-- Footer -->
+    <?php include 'Part/Footer.php';?>
+    <!-- Footer -->
   </div>
+</div>
 
-  <!-- Scroll to top -->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
-
-
-  <!-- modal -->
-  
-  <!-- end modal -->
+<!-- Scroll to top -->
+<a class="scroll-to-top rounded" href="#page-top">
+  <i class="fas fa-angle-up"></i>
+</a>
 
 
-  <?php include 'Part/Js.php';?>
+<!-- modal -->
 
-  <!-- Page level custom scripts -->
-  <script>
-    $(document).ready(function () {
+<!-- end modal -->
+
+
+<?php include 'Part/Js.php';?>
+
+<!-- Page level custom scripts -->
+<script>
+  $(document).ready(function () {
 
       $('#dataTable').DataTable(); // ID From dataTable 
       $('#dataTableHover').DataTable(); // ID From dataTable with Hover
     });
 
-    function formatRupiah(angka) {
-      var formatter = new Intl.NumberFormat('id-ID', {
-        style: 'currency',
-        currency: 'IDR'
-      });
+  function formatRupiah(angka) {
+    var formatter = new Intl.NumberFormat('id-ID', {
+      style: 'currency',
+      currency: 'IDR'
+    });
 
-      return formatter.format(angka);
-    }
+    return formatter.format(angka);
+  }
 
-    function check_nis() {
+  function check_nis() {
 
-      var input_check_nis = $('[name="nis"]').val();
+    var input_check_nis = $('[name="nis"]').val();
 
         // alert(input_check_nis);
 
@@ -316,7 +326,7 @@
             console.log(data.message);
 
 
-            if (data.result != 'false') {
+            if (data.message != 'TRUE') {
 
               cek_jenis_kelamin = data.result[0].jenis_kelamin;
               var jumlah_pembayaran = formatRupiah(data.result[0].jumlah_bayar);
@@ -349,7 +359,7 @@
             textarea.readOnly = true;
 
 
-          }else if (data.result == 'false'){
+          }else{
             alert("Data Santri Tidak Ditemukan !");
           }
         },

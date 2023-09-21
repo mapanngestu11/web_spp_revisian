@@ -18,14 +18,14 @@ class Kontak extends CI_Controller {
 	public function add()
 	{
 		date_default_timezone_set("Asia/Jakarta");
-		$nama = $this->input->post('nama');
+		$nama_santri = $this->input->post('nama_santri');
 		$no_hp = $this->input->post('no_hp');
 		$pesan = $this->input->post('pesan');
 		$waktu =  date('Y-m-d h:i:s');
 
 
 		$data = array(
-			'nama' => $nama,
+			'nama_santri' => $nama_santri,
 			'no_hp' => $no_hp,
 			'pesan' => $pesan,
 			'waktu' => $waktu

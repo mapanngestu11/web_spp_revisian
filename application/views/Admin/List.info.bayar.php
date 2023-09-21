@@ -31,7 +31,63 @@
                   <h6 class="m-0 font-weight-bold text-primary">Data Info Pembayaran</h6>
 
                   <!-- modal tambah -->
+                  <button class="btn btn-primary block" style=" float: right;" data-toggle="modal" data-target="#default" data-backdrop="static" data-keyboard="false">Tambah Info Pembayaran</button>
 
+
+                  <!-- modal tambah -->
+                  <div class="modal fade " id="default" role="dialog" aria-hidden="true" data-backdrop="static">>
+                    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="myModalLabel1">Tambah Data Pembayaran</h5>
+                          <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
+                            <i data-feather="x"></i>
+                          </button>
+                        </div>
+                        <style>
+                          .form-input {
+                            padding-top: 5px;
+                          }
+                        </style>
+
+                        <div class="modal-body">
+                          <div class="modal-body">
+                            <form action="<?php echo base_url() . 'Admin/Info_bayar/add'; ?>" method="post">
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <label>Tahun Angkatan</label>
+                                  <div class="form-group form-input">
+                                    <select class="form-control" name="tahun_angkatan" required="">
+                                      <option value="">Pilih</option>
+                                      <option value="2021">2021</option>
+                                      <option value="2022">2022</option>
+                                      <option value="2023">2023</option>
+                                      <option value="2024">2024</option>
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <label>Jumlah Bayaran</label>
+                                  <input type="number" name="jumlah_bayar" class="form-control" required="">
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn" data-dismiss="modal">
+                              <i class="bx bx-x d-block d-sm-none"></i>
+                              <span class="d-none d-sm-block">Batal</span>
+                            </button>
+                            <button type="submit" class="btn btn-primary ml-1">
+                              <i class="bx bx-check d-block d-sm-none"></i>
+                              <span class="d-none d-sm-block">Tambah</span>
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
                   <!-- end modal -->
                 </div>
                 <div class="table-responsive p-3">
@@ -70,6 +126,7 @@
                           <td>
                             <div class="form-button-action">
                               <a class="btn btn-link btn-primary btn-lg" data-toggle="modal" data-target="#ModalEdit<?php echo $id_info_bayar; ?>"><span class="fa fa-edit" style="color:white;"></span></a>
+                              <a class="btn btn-link btn-danger btn-lg" data-toggle="modal" data-target="#ModalHapus<?php echo $id_info_bayar; ?>"><i class=" fa fa-times" data-original-title="Edit Task" style="color:white;"></i></a>
                             </div>
                           </td>
                         <?php endforeach; ?>
@@ -158,6 +215,42 @@
         </div>
       <?php endforeach; ?>
       <!-- end modal -->
+
+
+
+      <!-- modal hapus -->
+      <?php foreach ($info->result_array() as $row) :
+        $id_info_bayar = $row['id_info_bayar'];
+        $tahun_angkatan = $row['tahun_angkatan'];
+        ?>
+        <div class="modal fade" id="ModalHapus<?php echo $id_info_bayar; ?>" tabindex="-1" role="dialog" aria-labelledby="">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <!--    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><span class="fa fa-close"></span></span></button> -->
+                <h4 class="modal-title" id="myModalLabel">Hapus Info Bayar</h4>
+              </div>
+              <form class="form-horizontal" action="<?php echo base_url() . 'Admin/Info_bayar/delete' ?>" method="post">
+                <div class="modal-body">
+                  <input type="hidden" name="id_info_bayar" value="<?php echo $id_info_bayar; ?>" />
+
+                  <p>Apakah Anda yakin mau menghapus <b><?php echo $tahun_angkatan; ?></b> ?</p>
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn" data-dismiss="modal">
+                    <i class="bx bx-x d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">Batal</span>
+                  </button>
+                  <button type="submit" class="btn btn-primary btn-flat" id="simpan">Hapus</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      <?php endforeach; ?>
+      <!-- end modal hapus -->
+
       <!-- Footer -->
       <?php include 'Part/Footer.php';?>
       <!-- Footer -->
