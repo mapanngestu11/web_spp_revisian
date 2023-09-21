@@ -21,7 +21,7 @@
 				<img src="<?php echo base_url()."assets/Front/images/icon.png"; ?>" class="logo">
 			</div>
 			<div class="col-md-10">
-				<h1 class="judul">Laporan Pembayaran SPP <br> Rumah Qur'an Al-mubarok</h1>
+				<h1 class="judul">Laporan Pembayaran SPP <br> Rumah Qur'an Al-Mubarok</h1>
 			</div>
 		</div>
 	</div>
