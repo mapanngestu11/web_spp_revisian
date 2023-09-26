@@ -61,7 +61,7 @@ class Siswa  extends CI_Controller
                 $this->load->library('image_lib', $config);
                 $this->image_lib->resize();
 
-                $gambar = $gbr['file_name'];
+                $foto = $gbr['file_name'];
 
                 $nis                    = $this->input->post('nis');
                 $password               = md5($this->input->post('password'));
@@ -197,7 +197,6 @@ public function update()
 
             $id_santri           = $this->input->post('id_santri');
             $nis           = $this->input->post('nis');
-            $password = md5($this->input->post('password'));
             $nama_santri             = $this->input->post('nama_santri');
             $tahun_angkatan           = $this->input->post('tahun_angkatan');
             $nama_kelas                  = $this->input->post('nama_kelas');
@@ -214,7 +213,6 @@ public function update()
             $data = array(
 
                 'nis' => $nis,
-                'password' => $password,
                 'nama_santri' => $nama_santri,
                 'tahun_angkatan' => $tahun_angkatan,
                 'nama_kelas' => $nama_kelas,
@@ -227,10 +225,14 @@ public function update()
                 'no_hp_ortu' => $no_hp_ortu
 
             );
+
+       
             $where = array(
                 'id_santri' => $id_santri
             );
-
+            // var_dump($data);
+            // var_dump($where);
+            // die();
             $this->M_siswa->update_data($where, $data, 'tbl_santri');
             echo $this->session->set_flashdata('msg', 'success-update');
             redirect('Admin/Siswa');

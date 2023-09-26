@@ -106,7 +106,7 @@
                     <tr>
                       <th>No</th>
                       <th>Kelas</th>
-                      <th>Tahun Ajaran</th>
+                      <th>Tahun Angkatan</th>
                       <th>Action</th>
                     </tr>
                   </tfoot>
@@ -211,7 +211,7 @@
                     <div class="col-md-6">
                       <label>Tahun Angkatan</label>
                       <div class="form-group form-input">
-                       <select name="jenjang" class="form-control" required="">
+                       <select name="tahun_angkatan" class="form-control" required="">
                         <option value="<?php echo $tahun_angkatan;?>"><?php echo $tahun_angkatan;?></option>
                         <option value="2020">2020 </option>
                         <option value="2021">2021 </option>
