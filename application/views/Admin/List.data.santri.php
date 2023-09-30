@@ -1,7 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php include 'Part/Head.php';?>
+<style type="text/css">
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 
+  /* Firefox */
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+</style>
 <body id="page-top">
   <div id="wrapper">
     <!-- Sidebar -->

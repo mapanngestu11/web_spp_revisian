@@ -152,7 +152,9 @@ class M_pembayaran extends CI_Model{
 			a.jumlah_bayar,
 			b.bulan,
 			b.status_code,
-			b.transaction_time');
+			b.transaction_time,
+			b.payment_type,
+			b.bank');
 		$this->db->join('tbl_status_pembayaran as b','a.nis = b.nis','left');
 		$this->db->where('b.bulan',$bulan);
 		$hsl = $this->db->get('tbl_pembayaran as a')->result();

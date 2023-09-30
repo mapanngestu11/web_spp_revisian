@@ -123,6 +123,7 @@
                         <th>Nama</th>
                         <th>No Hp</th>
                         <th>Isi</th>
+                        <th>Status</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -133,6 +134,7 @@
                         <th>Nama</th>
                         <th>No Hp</th>
                         <th>Isi</th>
+                        <th>Status</th>
                         <th>Action</th>
                       </tr>
                     </tfoot>
@@ -147,6 +149,7 @@
                         $nama = $row['nama_santri'];
                         $no_hp     = $row['no_hp'];
                         $pesan = $row['pesan'];
+                        $status = $row['status'];
                         ?>
                         <tr>
                           <td><?php echo $no ?></td>
@@ -154,191 +157,233 @@
                           <td><?php echo $nama ?></td>
                           <td><?php echo $no_hp ?></td>
                           <td><?php echo $pesan ?></td>
-                          <td>
-                            <div class="form-button-action">
-                              <a class="btn btn-link btn-primary btn-lg" data-toggle="modal" data-target="#ModalEdit<?php echo $id_kontak; ?>"><span class="fa fa-eye" style="color:white;"></span></a>
-                              <a class="btn btn-link btn-danger btn-lg" data-toggle="modal" data-target="#ModalHapus<?php echo $id_kontak; ?>"><i class=" fa fa-times" data-original-title="Edit Task" style="color:white;"></i></a>
-                            </div>
-                          </td>
-                        <?php endforeach; ?>
+                          <td><?php if ($status == '0') { ?>
+                            <span class="badge btn-warning">Pending</span>
+                          <?php  }else { ?>
+                           <span class="badge btn-success">Sudah</span>
+                         <?php } ?>
+                       </td>
+                       <td>
+                        <div class="form-button-action">
+                          <a class="btn btn-link btn-primary btn-lg" data-toggle="modal" data-target="#ModalEdit<?php echo $id_kontak; ?>"><span class="fa fa-eye" style="color:white;"></span></a>
+                          <a class="btn btn-link btn-danger btn-lg" data-toggle="modal" data-target="#ModalHapus<?php echo $id_kontak; ?>"><i class=" fa fa-times" data-original-title="Edit Task" style="color:white;"></i></a>
+                        </div>
+                      </td>
+                    <?php endforeach; ?>
 
-                      </tbody>
-                    </table>
-                  </div>
-                <?php endif;?>
-
-                <?php if($this->session->userdata('hak_akses')==='admin'):?> 
-                  <div class="table-responsive p-3">
-                    <table class="table align-items-center table-flush" id="dataTable">
-                      <thead class="thead-light">
-                        <tr>
-                          <th>No</th>
-                          <th>Nama</th>
-                          <th>No Hp</th>
-                          <th>Isi</th>
-                          <th>Action</th>
-                        </tr>
-                      </thead>
-                      <tfoot>
-                        <tr>
-                          <th>No</th>
-                          <th>Nama</th>
-                          <th>No Hp</th>
-                          <th>Isi</th>
-                          <th>Action</th>
-                        </tr>
-                      </tfoot>
-                      <tbody>
-                        <?php
-                        $no = 0;
-                        foreach ($pesan_bantuan->result_array() as $row) :
-
-                          $no++;
-                          $id_kontak           = $row['id_kontak'];
-                          $nama = $row['nama_santri'];
-                          $no_hp     = $row['no_hp'];
-                          $pesan = $row['pesan'];
-                          ?>
-                          <tr>
-                            <td><?php echo $no ?></td>
-                            <td><?php echo $nama ?></td>
-                            <td><?php echo $no_hp ?></td>
-                            <td><?php echo $pesan ?></td>
-                            <td>
-                              <div class="form-button-action">
-                                <a class="btn btn-link btn-primary btn-lg" data-toggle="modal" data-target="#ModalEdit<?php echo $id_kontak; ?>"><span class="fa fa-eye" style="color:white;"></span></a>
-                                <a class="btn btn-link btn-danger btn-lg" data-toggle="modal" data-target="#ModalHapus<?php echo $id_kontak; ?>"><i class=" fa fa-times" data-original-title="Edit Task" style="color:white;"></i></a>
-                              </div>
-                            </td>
-                          <?php endforeach; ?>
-
-                        </tbody>
-                      </table>
-                    </div>
-                  <?php endif;?>
-                </div>
+                  </tbody>
+                </table>
               </div>
+            <?php endif;?>
 
+            <?php if($this->session->userdata('hak_akses')==='admin'):?> 
+              <div class="table-responsive p-3">
+                <table class="table align-items-center table-flush" id="dataTable">
+                  <thead class="thead-light">
+                    <tr>
+                      <th>No</th>
+                      <th>Nama</th>
+                      <th>No Hp</th>
+                      <th width="30px">Isi</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>No</th>
+                      <th>Nama</th>
+                      <th>No Hp</th>
+                      <th>Isi</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                    <?php
+                    $no = 0;
+                    foreach ($pesan_bantuan->result_array() as $row) :
+
+                      $no++;
+                      $id_kontak           = $row['id_kontak'];
+                      $nama = $row['nama_santri'];
+                      $no_hp     = $row['no_hp'];
+                      $pesan = $row['pesan'];
+                      $status = $row['status'];
+                      ?>
+                      <tr>
+                        <td><?php echo $no ?></td>
+                        <td><?php echo $nama ?></td>
+                        <td><?php echo $no_hp ?></td>
+                        <td class="text-wrap"><?php echo $pesan ?></td>
+                        <td><?php if ($status == '0') { ?>
+                          <span class="badge btn-warning">Pending</span>
+                        <?php  }else { ?>
+                         <span class="badge btn-success">Sudah</span>
+                       <?php } ?>
+                     </td>
+                     <td>
+                      <div class="form-button-action">
+                        <a class="btn btn-link btn-primary btn-lg" data-toggle="modal" data-target="#ModalEdit<?php echo $id_kontak; ?>"><span class="fa fa-eye" style="color:white;"></span></a>
+                        <a class="btn btn-link btn-danger btn-lg" data-toggle="modal" data-target="#ModalHapus<?php echo $id_kontak; ?>"><i class=" fa fa-times" data-original-title="Edit Task" style="color:white;"></i></a>
+                      </div>
+                    </td>
+                  <?php endforeach; ?>
+
+                </tbody>
+              </table>
             </div>
-            <!--Row-->
-
-            <!-- Documentation Link -->
-
-          </div>
-          <!---Container Fluid-->
+          <?php endif;?>
         </div>
+      </div>
+
+    </div>
+    <!--Row-->
+
+    <!-- Documentation Link -->
+
+  </div>
+  <!---Container Fluid-->
+</div>
 
 
-        <!-- modal hapus -->
-        <?php foreach ($pesan_bantuan->result_array() as $row) :
-          $id_kontak = $row['id_kontak'];
-          $nama = $row['nama_santri'];
+<!-- modal hapus -->
+<?php foreach ($pesan_bantuan->result_array() as $row) :
+  $id_kontak = $row['id_kontak'];
+  $nama = $row['nama_santri'];
 
-          ?>
-          <div class="modal fade" id="ModalHapus<?php echo $id_kontak; ?>" tabindex="-1" role="dialog" aria-labelledby="">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <!--    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><span class="fa fa-close"></span></span></button> -->
-                  <h4 class="modal-title" id="myModalLabel">Hapus Pesan</h4>
-                </div>
-                <form class="form-horizontal" action="<?php echo base_url() . 'Admin/Pesan_bantuan/delete' ?>" method="post">
-                  <div class="modal-body">
-                    <input type="hidden" name="id_kontak" value="<?php echo $id_kontak; ?>" />
+  ?>
+  <div class="modal fade" id="ModalHapus<?php echo $id_kontak; ?>" tabindex="-1" role="dialog" aria-labelledby="">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!--    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><span class="fa fa-close"></span></span></button> -->
+          <h4 class="modal-title" id="myModalLabel">Hapus Pesan</h4>
+        </div>
+        <form class="form-horizontal" action="<?php echo base_url() . 'Admin/Pesan_bantuan/delete' ?>" method="post">
+          <div class="modal-body">
+            <input type="hidden" name="id_kontak" value="<?php echo $id_kontak; ?>" />
 
-                    <p>Apakah Anda yakin mau menghapus <b>Pesan Tersebut.</b> ?</p>
+            <p>Apakah Anda yakin mau menghapus <b>Pesan Tersebut.</b> ?</p>
 
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn" data-dismiss="modal">
-                      <i class="bx bx-x d-block d-sm-none"></i>
-                      <span class="d-none d-sm-block">Batal</span>
-                    </button>
-                    <button type="submit" class="btn btn-primary btn-flat" id="simpan">Hapus</button>
-                  </div>
-                </form>
-              </div>
-            </div>
           </div>
-        <?php endforeach; ?>
-        <!-- end modal hapus -->
-
-
-        <!-- modal edit -->
-        <?php foreach ($pesan_bantuan->result_array() as $row) :
-          $id_kontak = $row['id_kontak'];
-          $nama = $row['nama_santri'];
-          $no_hp    = $row['no_hp'];
-
-          ?>
-          <div class="modal fade " id="ModalEdit<?php echo $id_kontak; ?>" role="dialog" aria-hidden="true" data-backdrop="static">>
-            <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="myModalLabel1">Lihat Detail Pesan</h5>
-                  <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
-                    <i data-feather="x"></i>
-                  </button>
-                </div>
-                <style>
-                  .form-input {
-                    padding-top: 5px;
-                  }
-                </style>
-
-                <div class="modal-body">
-                  <div class="modal-body">
-                    <form action="#" method="post">
-                      <div class="row">
-                        <div class="col-md-6">
-                          <label>Nama Lengkap</label>
-                          <div class="form-group form-input">
-                            <input type="text" name="nama" value="<?php echo $row['nama_santri']; ?>" class="form-control" readonly>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <label>Nomor Handphone</label>
-                          <div class="form-group form-input">
-                            <input type="text" name="nama" value="<?php echo $row['no_hp']; ?>" class="form-control" readonly>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <label>Pesan</label>
-                          <textarea class="form-control" readonly><?php echo $pesan;?></textarea>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-primary ml-1" data-dismiss="modal">
-                      <i class="bx bx-x d-block d-sm-none"></i>
-                      <span class="d-none d-sm-block">Batal</span>
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
+          <div class="modal-footer">
+            <button type="button" class="btn" data-dismiss="modal">
+              <i class="bx bx-x d-block d-sm-none"></i>
+              <span class="d-none d-sm-block">Batal</span>
+            </button>
+            <button type="submit" class="btn btn-primary btn-flat" id="simpan">Hapus</button>
           </div>
-        <?php endforeach; ?>
-        <!-- end modal -->
-        <!-- Footer -->
-        <?php include 'Part/Footer.php';?>
-        <!-- Footer -->
+        </form>
       </div>
     </div>
+  </div>
+<?php endforeach; ?>
+<!-- end modal hapus -->
 
-    <!-- Scroll to top -->
-    <a class="scroll-to-top rounded" href="#page-top">
-      <i class="fas fa-angle-up"></i>
-    </a>
 
-    <?php include 'Part/Js.php';?>
+<!-- modal edit -->
+<?php foreach ($pesan_bantuan->result_array() as $row) :
+  $id_kontak = $row['id_kontak'];
+  $nama = $row['nama_santri'];
+  $no_hp    = $row['no_hp'];
+  $status = $row['status'];
 
-    <!-- Page level custom scripts -->
-    <script>
-      $(document).ready(function () {
+  ?>
+  <div class="modal fade " id="ModalEdit<?php echo $id_kontak; ?>" role="dialog" aria-hidden="true" data-backdrop="static">>
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="myModalLabel1">Lihat Detail Pesan</h5>
+          <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
+            <i data-feather="x"></i>
+          </button>
+        </div>
+        <style>
+          .form-input {
+            padding-top: 5px;
+          }
+        </style>
+
+        <div class="modal-body">
+          <div class="modal-body">
+            <form action="<?php echo base_url('Admin/Pesan_bantuan/update') ?>" method="post">
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Nama Lengkap</label>
+                  <div class="form-group form-input">
+                    <input type="text" name="nama" value="<?php echo $row['nama_santri']; ?>" class="form-control" readonly>
+                    <input type="hidden" name="id_kontak" value="<?php echo $id_kontak;?>">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label>Nomor Handphone</label>
+                  <div class="form-group form-input">
+                    <input type="text" name="nama" value="<?php echo $row['no_hp']; ?>" class="form-control" readonly>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <label>Pesan</label>
+                  <textarea class="form-control"><?php echo $pesan;?></textarea>
+                </div>
+              </div>
+
+              <?php 
+
+              if ($this->session->userdata('hak_akses')==='santri'){ ?>
+
+              <?php }else{ ?>
+                <div class="row mt-4">
+                  <div class="col-md-12">
+                    <label>Status</label>
+                    <select class="form-control form-input" name="status" required="">
+                      <option value="<?php echo $status;?>">
+                        <?php if ($status =='1') { ?>
+                          sudah
+                        <?php } else { ?>
+                          Pending
+                        <?php }?>
+                      </option>
+                      <option value="1">Sudah</option>
+                      <option value="0">Pending</option>
+                    </select>
+                  </div>
+                </div>
+              <?php } ?>
+
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn" data-dismiss="modal">
+              <i class="bx bx-x d-block d-sm-none"></i>
+              <span class="d-none d-sm-block">Batal</span>
+            </button>
+            <button type="submit" class="btn btn-primary btn-flat" id="simpan">Ubah</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+<?php endforeach; ?>
+<!-- end modal -->
+<!-- Footer -->
+<?php include 'Part/Footer.php';?>
+<!-- Footer -->
+</div>
+</div>
+
+<!-- Scroll to top -->
+<a class="scroll-to-top rounded" href="#page-top">
+  <i class="fas fa-angle-up"></i>
+</a>
+
+<?php include 'Part/Js.php';?>
+
+<!-- Page level custom scripts -->
+<script>
+  $(document).ready(function () {
       $('#dataTable').DataTable(); // ID From dataTable 
       $('#dataTableHover').DataTable(); // ID From dataTable with Hover
     });

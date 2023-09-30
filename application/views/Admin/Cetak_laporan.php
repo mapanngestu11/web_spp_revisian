@@ -63,6 +63,8 @@
 			<th>Pesan</th>
 			<th>Jumlah Bayar</th>
 			<th>Bulan</th>
+			<th>Metode Pembayaran</th>
+			<th>Bank</th>
 			<th>Status Pembayaran</th>
 			<th>Waktu</th>
 		</tr>
@@ -76,7 +78,9 @@
 			$pesan = $data->pesan;
 			$jumlah_bayar = $data->jumlah_bayar;
 			$bulan = $data->bulan;
+			$metode_pembayaran = $data->payment_type;
 			$status_code = $data->status_code;
+			$bank = $data->bank;
 			$waktu = $data->transaction_time;
 			?>
 			<tr>
@@ -87,6 +91,9 @@
 				<td><?php echo $pesan;?></td>
 				<td>Rp.<?php echo number_format($jumlah_bayar);?></td>
 				<td><?php echo $bulan;?></td>
+
+				<td><?php echo $metode_pembayaran;?></td>
+				<td><?php echo $bank;?></td>
 				<td>
 					<?php if ($status_code == '200') { ?>
 						Lunas

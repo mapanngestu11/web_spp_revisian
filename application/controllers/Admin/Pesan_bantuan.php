@@ -27,15 +27,15 @@
 
         public function add()
         {
-         date_default_timezone_set("Asia/Jakarta");
-         $nis = $this->input->post('nis');
-         $nama_santri = $this->input->post('nama_santri');
-         $pesan = $this->input->post('pesan');
-         $no_hp = $this->input->post('no_hp');
-         $status = '0';
-         $waktu = date('Y-m-d H:i:s');
+           date_default_timezone_set("Asia/Jakarta");
+           $nis = $this->input->post('nis');
+           $nama_santri = $this->input->post('nama_santri');
+           $pesan = $this->input->post('pesan');
+           $no_hp = $this->input->post('no_hp');
+           $status = '0';
+           $waktu = date('Y-m-d H:i:s');
 
-         $data = array(
+           $data = array(
             'nis' => $nis,
             'nama_santri' => $nama_santri,
             'pesan' => $pesan,
@@ -44,14 +44,36 @@
             'waktu' => $waktu
         );
 
-         $this->M_kontak->input_data($data, 'tbl_kontak');
-         echo $this->session->set_flashdata('msg', 'success');
-         redirect('Admin/Pesan_bantuan');
-     }
+           $this->M_kontak->input_data($data, 'tbl_kontak');
+           echo $this->session->set_flashdata('msg', 'success');
+           redirect('Admin/Pesan_bantuan');
+       }
+
+       public function update()
+       {
+        
+        date_default_timezone_set("Asia/Jakarta");
+        $id_kontak = $this->input->post('id_kontak');
+        $status = $this->input->post('status');
 
 
-     public function delete($id_kontak)
-     {
+
+        $data = array(
+            'status' => $status,
+        );
+
+        $where = array(
+            'id_kontak' => $id_kontak
+        );
+
+        $this->M_kontak->update_data($where, $data, 'tbl_kontak');
+        echo $this->session->set_flashdata('msg', 'info-update');
+        redirect('Admin/Pesan_bantuan');
+    }
+
+
+    public function delete($id_kontak)
+    {
         $id_kontak = $this->input->post('id_kontak');
         $this->M_kontak->delete_data($id_kontak);
         echo $this->session->set_flashdata('msg', 'success-hapus');

@@ -88,15 +88,13 @@ class Import extends CI_Controller {
         }
         else
         {
-            // var_dump("ini juga error");
-            // die();
-            // $message = array(
-            //     'message'=>'<div class="alert alert-danger">Import file gagal, coba lagi</div>',
-            // );
-            // var_dump("ini error");
-            // die();
-            // $this->session->set_flashdata($message);
-            // redirect('belakang/siswa');
+
+            $message = array(
+                'message'=>'<div class="alert alert-danger">Import file gagal, coba lagi</div>',
+            );
+
+            $this->session->set_flashdata($message);
+            redirect('Admin/siswa');
         }
     }
 
