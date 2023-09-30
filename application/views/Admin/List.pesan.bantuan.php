@@ -52,7 +52,7 @@
 
                         <div class="modal-body">
                           <div class="modal-body">
-                            <form action="<?php echo base_url() . 'Admin/Kelas/add'; ?>" method="post">
+                            <form action="<?php echo base_url() . 'Admin/Pesan_bantuan/add'; ?>" method="post">
 
                               <div class="row">
                                 <div class="col-md-6">
@@ -88,10 +88,10 @@
                                     <input type="number" name="no_hp" class="form-control">
                                   </div>
                                   <br>
-                                  <label>Upload Gambar</label>
+                          <!--         <label>Upload Gambar</label>
                                   <div class="form-group form-input">
                                     <input type="file" name="gambar" class="form-control">
-                                  </div>
+                                  </div> -->
                                 </div>
                               </div>
 
@@ -233,6 +233,7 @@
         <?php foreach ($pesan_bantuan->result_array() as $row) :
           $id_kontak = $row['id_kontak'];
           $nama = $row['nama_santri'];
+
           ?>
           <div class="modal fade" id="ModalHapus<?php echo $id_kontak; ?>" tabindex="-1" role="dialog" aria-labelledby="">
             <div class="modal-dialog" role="document">
@@ -245,7 +246,7 @@
                   <div class="modal-body">
                     <input type="hidden" name="id_kontak" value="<?php echo $id_kontak; ?>" />
 
-                    <p>Apakah Anda yakin mau menghapus <b><?php echo $nama; ?></b> ?</p>
+                    <p>Apakah Anda yakin mau menghapus <b>Pesan Tersebut.</b> ?</p>
 
                   </div>
                   <div class="modal-footer">

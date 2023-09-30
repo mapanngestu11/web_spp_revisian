@@ -38,6 +38,11 @@ class Homepage  extends CI_Controller
 
         $data['data_pembayaran'] = $this->M_pembayaran->get_data_pembayaran_all();
 
+
+        // echo "<pre>";
+        // print_r($data['pembayaran']);
+        // echo "</pre>";
+        // die();
         $this->load->view('Admin/Homepage.php',$data);
     }
 }

@@ -71,8 +71,8 @@
                                   <div class="form-group form-input">
                                     <select class="form-control" name="jenis_kelamin" required="">
                                       <option value="">-- Pilih --</option>
-                                      <option value="laki-laki"> Laki - Laki</option>
-                                      <option value="perempuan"> Perempuan </option>
+                                      <option value="L"> L </option>
+                                      <option value="P"> P </option>
                                     </select>
                                   </div>
                                 </div>
@@ -267,8 +267,8 @@
                       <div class="form-group form-input">
                         <select class="form-control" name="jenis_kelamin" required="">
                           <option value="<?php echo $jenis_kelamin?>"><?php echo $jenis_kelamin;?></option>
-                          <option value="laki-laki"> Laki - Laki</option>
-                          <option value="perempuan"> Perempuan </option>
+                          <option value="L"> L</option>
+                          <option value="P"> P </option>
                         </select>
                       </div>
                     </div>
