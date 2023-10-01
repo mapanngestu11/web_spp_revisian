@@ -195,7 +195,7 @@
                             <div class="row mt-4">
                               <div class="col-md-12">
                                 <label>Upload Foto Siswa</label>
-                                <input type="file" name="foto" class="form-control" required="">
+                                <input type="file" name="foto" class="form-control">
 
                               </div>
                             </div>

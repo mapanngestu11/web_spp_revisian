@@ -8,6 +8,17 @@
     height: 75px;
     border-radius: 50%;
   }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
 </style>
 <body id="page-top">
   <div id="wrapper">
@@ -71,8 +82,8 @@
                                   <div class="form-group form-input">
                                     <select class="form-control" name="jenis_kelamin" required="">
                                       <option value="">-- Pilih --</option>
-                                      <option value="L"> L </option>
-                                      <option value="P"> P </option>
+                                      <option value="L"> Laki - Laki </option>
+                                      <option value="P"> Perempuan </option>
                                     </select>
                                   </div>
                                 </div>
@@ -161,7 +172,15 @@
                           <img class="gambar-project" src="<?php echo base_url() . "assets/"; ?>admin/upload/<?php echo $foto ?>">
                         </td>
                         <td><?php echo $nama_guru ?></td>
-                        <td><?php echo $jenis_kelamin ?></td>
+                        <td>
+
+                          <?php if ($jenis_kelamin == 'L') { ?>
+                            Laki - Laki
+                          <?php }else{ ?>
+                            Perempuan 
+                          <?php } ?>
+
+                        </td>
                         <td><?php echo $mapel;?></td>
                         <td>
                           <div class="form-button-action">
@@ -266,9 +285,13 @@
                       <label>Jenis Kelamin</label>
                       <div class="form-group form-input">
                         <select class="form-control" name="jenis_kelamin" required="">
-                          <option value="<?php echo $jenis_kelamin?>"><?php echo $jenis_kelamin;?></option>
-                          <option value="L"> L</option>
-                          <option value="P"> P </option>
+                          <option value="<?php echo $jenis_kelamin;?>"><?php if ($jenis_kelamin == 'L') { 
+                            echo "Laki - Laki";
+                            ?><?php }else{ echo "Perempuan"; } ?>
+
+                          </option>
+                          <option value="L"> Laki - Laki</option>
+                          <option value="P"> Perempuan </option>
                         </select>
                       </div>
                     </div>

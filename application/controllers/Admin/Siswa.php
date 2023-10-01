@@ -109,8 +109,48 @@ class Siswa  extends CI_Controller
             }
         } else {
 
-          echo $this->session->set_flashdata('msg', 'warning');
+          $nis                    = $this->input->post('nis');
+          $password               = md5($this->input->post('password'));
+          $hak_akses              = $this->input->post('hak_akses');
+          $nama_santri             = $this->input->post('nama_santri');
+          $tahun_angkatan           = $this->input->post('tahun_angkatan');
+          $nama_kelas                  = $this->input->post('nama_kelas');
+          $jenis_kelamin          = $this->input->post('jenis_kelamin');
+
+
+          $no_hp                  = $this->input->post('no_hp');
+          $email                  = $this->input->post('email');
+          $alamat                  = $this->input->post('alamat');
+          $nama_ayah              = $this->input->post('nama_ayah');
+          $nama_ibu               = $this->input->post('nama_ibu');
+          $no_hp_ortu             = $this->input->post('no_hp_ortu');
+
+          $tanggal                = date('d-M-y');
+
+          $data = array(
+
+            'nis' => $nis,
+            'password' => $password,
+            'hak_akses' => $hak_akses,
+            'nama_santri' => $nama_santri,
+            'tahun_angkatan' => $tahun_angkatan,
+            'nama_kelas' => $nama_kelas,
+            'jenis_kelamin' => $jenis_kelamin,
+            'no_hp' => $no_hp,
+            'email' => $email,
+            'alamat' => $alamat,
+            'nama_ayah' => $nama_ayah,
+            'nama_ibu' => $nama_ibu,
+            'no_hp_ortu' => $no_hp_ortu
+
+
+        );
+
+          $this->M_siswa->input_data($data, 'tbl_santri');
+          echo $this->session->set_flashdata('msg', 'success');
           redirect('Admin/Siswa');
+
+
       }
   }
   public function delete($id_santri)
@@ -226,7 +266,7 @@ public function update()
 
             );
 
-       
+
             $where = array(
                 'id_santri' => $id_santri
             );

@@ -323,10 +323,13 @@
           },
 
           success: function(data) {
-            console.log(data.message);
+            console.log(data.result);
+
+            var cek_data = data.result;
 
 
-            if (data.message != 'TRUE') {
+
+            if (cek_data) {
 
               cek_jenis_kelamin = data.result[0].jenis_kelamin;
               var jumlah_pembayaran = formatRupiah(data.result[0].jumlah_bayar);
