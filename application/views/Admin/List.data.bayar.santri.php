@@ -160,7 +160,7 @@
       heading: 'Success',
       text: "Berhasil Menambah data Pembayaran, Silahkan melanjutkan pembayaran sesuai metode pembayaran.",
       showHideTransition: 'slide',
-      icon: 'warning',
+      icon: 'success',
       hideAfter: false,
       bgColor: '#7EC857'
     });

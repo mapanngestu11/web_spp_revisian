@@ -161,6 +161,9 @@ class Snap extends CI_Controller {
 		$nama_kelas = $this->input->post('nama_kelas');
 		$tahun_angkatan = $this->input->post('tahun_angkatan');
 		$nis = $this->input->post('nis');
+		$no_hp_ortu = $this->input->post('no_hp_ortu');
+	
+
 		//$bulan =  date('F');
 		$tanggal_upload =  date('Y-m-d h:i:s');
 
@@ -198,6 +201,27 @@ class Snap extends CI_Controller {
 		];
 
 		$simpan = $this->M_status_pembayaran->input_data($data,'tbl_status_pembayaran');
+
+
+		$curl = curl_init();
+		$token = "ytTsN7yw6Xh3z8S1IJe8GKyO4gFT1F9J2ukCSObdu8y0xusoFGr0V5Nqk7kbykBu";
+		$data = [
+			'phone' => $no_hp_ortu,
+			'message' => 'Terimaskih Telah Melakukan Pembayaran Bulan, '.$cek_bulan,
+		];
+		curl_setopt($curl, CURLOPT_HTTPHEADER,
+			array(
+				"Authorization: $token",
+			)
+		);
+		curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
+		curl_setopt($curl, CURLOPT_URL,  "https://jogja.wablas.com/api/send-message");
+		curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+		$result = curl_exec($curl);
+		curl_close($curl);
 
 		echo $this->session->set_flashdata('msg', 'success-bayar');
 		redirect('Admin/Pembayaran/pembayaran_santri/');

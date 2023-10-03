@@ -40,6 +40,14 @@ class User  extends CI_Controller
             'waktu' => $waktu
         );
 
+        $curl = curl_init();
+        $token = "";
+        $phone = "628122364xxxx";
+        $message = "test get";
+        curl_setopt($curl, CURLOPT_URL, "https://jogja.wablas.com/api/send-message?phone=$phone&message=$message&token=$token");
+        $result = curl_exec($curl);
+      
+
         $input = $this->M_user->input_data($data, 'tbl_user');
         
 
